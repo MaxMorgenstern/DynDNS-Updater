@@ -6,12 +6,13 @@ using System.Windows.Forms;
 
 namespace DynDNS_Updater
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         Timer time;
         string currentIP;
+        bool pauseUpdate;
         
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -23,6 +24,7 @@ namespace DynDNS_Updater
 
             // Initialize on form load
             currentIP = "unknown";
+            pauseUpdate = false;
 
             // Timer Object
             time = new Timer();
@@ -47,22 +49,33 @@ namespace DynDNS_Updater
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
-            string tmpIP = Logic.DynDNS.GetIPv4();
-            if(currentIP != tmpIP
+            string tmpIPv4 = Logic.DynDNS.GetIPv4();
+            string tmpIPv6 = Logic.DynDNS.GetIPv6();
+
+            // TODO: pauseUpdate reset after time
+
+            if (!pauseUpdate && currentIP != tmpIPv4
                 && !string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString())
                 && !string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString())
             )
             {
-                currentIP = tmpIP;
+                string tmpCurrentIP = currentIP;
+                currentIP = tmpIPv4;
                 string updateResponse = Logic.DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
 
                 Color updateLogColor = Color.Black;
-// TODO - pause or wait for new settings
                 bool updateSuccess = false;
                 Logic.DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
 
                 LogBox.Items.Add(new LogBoxItem(Color.Black, "Update IP: " + currentIP));
                 LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
+
+                if (!updateSuccess)
+                {
+                    pauseUpdate = true;
+                    currentIP = tmpCurrentIP;
+                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
+                }
 
                 IPTempBox.Text = currentIP;
                 LogBox.SelectedIndex = LogBox.Items.Count - 1;
@@ -74,9 +87,14 @@ namespace DynDNS_Updater
         // FILE //////////////////////////////
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Username / Token"));
+
             DynDNSSettings.Default["Token"] = UserToken.Text;
             DynDNSSettings.Default["Username"] = UserName.Text;
             DynDNSSettings.Default.Save();
+            if (pauseUpdate)
+                LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
+            pauseUpdate = false;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

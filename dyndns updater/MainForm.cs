@@ -114,9 +114,11 @@ namespace DynDNS_Updater
         {
             try
             {
+                System.Diagnostics.Process.Start(@"http://ddns.edns.de/?help");
             }
             catch
             {
+                System.Diagnostics.Process.Start(GetStandardBrowserPath(), @"http://ddns.edns.de/?help");
             }
         }
 

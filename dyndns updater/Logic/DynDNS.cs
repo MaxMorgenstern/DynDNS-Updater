@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DynDNS_Updater.Properties;
+using System;
 using System.Drawing;
 using System.Net;
 
@@ -10,19 +11,13 @@ namespace DynDNS_Updater.Logic
         private static string GetIPv6Address;
 
         private static string UpdateURL;
-
-        private static string UpdateToken;
-        private static string UpdateUsername;
-
+        
         private static void init ()
         {
             GetIPv4Address = "http://v4.ddns.edns.de/ip.php";
             GetIPv6Address = "http://v6.ddns.edns.de/ip.php";
 
             UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
-
-            UpdateToken = "";
-            UpdateUsername = "";
         }
 
         public static string GetIPv4()
@@ -94,8 +89,8 @@ namespace DynDNS_Updater.Logic
         // TODO
         private static string replace(string message)
         {
-            message = message.Replace ("<Username>", UpdateUsername.Trim ());
-            message = message.Replace ("<Token>", UpdateToken.Trim ());
+            message = message.Replace("<Username>", DynDNSSettings.Default["Username"].ToString().Trim());
+            message = message.Replace("<Token>", DynDNSSettings.Default["Token"].ToString().Trim());
             message = message.Replace ("<IPv4>", GetIPv4 ().Trim ());
             message = message.Replace ("<IPv6>", GetIPv6 ().Trim ());
             return message;

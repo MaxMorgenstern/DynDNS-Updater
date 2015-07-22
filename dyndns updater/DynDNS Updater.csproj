@@ -67,6 +67,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\LogBoxItem.cs" />
+    <Compile Include="Logic\Helper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

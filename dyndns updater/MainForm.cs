@@ -1,5 +1,6 @@
 ﻿using DynDNS_Updater.Entities;
 using DynDNS_Updater.Properties;
+using DynDNS_Updater.Logic;
 using Microsoft.Win32;
 using System;
 using System.Drawing;
@@ -12,6 +13,7 @@ namespace DynDNS_Updater
         Timer time;
         string currentIP;
         bool pauseUpdate;
+        DateTime pauseDate;
         
         public MainForm()
         {
@@ -26,6 +28,7 @@ namespace DynDNS_Updater
             // Initialize on form load
             currentIP = "unknown";
             pauseUpdate = false;
+            pauseDate = DateTime.MinValue;
 
             // Timer Object
             time = new Timer();
@@ -50,8 +53,8 @@ namespace DynDNS_Updater
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
-            string tmpIPv4 = Logic.DynDNS.GetIPv4();
-            string tmpIPv6 = Logic.DynDNS.GetIPv6();
+            string tmpIPv4 = DynDNS.GetIPv4();
+            //string tmpIPv6 = DynDNS.GetIPv6();
 
             // TODO: pauseUpdate reset after time
 
@@ -62,11 +65,11 @@ namespace DynDNS_Updater
             {
                 string tmpCurrentIP = currentIP;
                 currentIP = tmpIPv4;
-                string updateResponse = Logic.DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
+                string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
 
                 Color updateLogColor = Color.Black;
                 bool updateSuccess = false;
-                Logic.DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
+                DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
 
                 LogBox.Items.Add(new LogBoxItem(Color.Black, "Update IP: " + currentIP));
                 LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
@@ -74,12 +77,20 @@ namespace DynDNS_Updater
                 if (!updateSuccess)
                 {
                     pauseUpdate = true;
+                    pauseDate = DateTime.Now;
+
                     currentIP = tmpCurrentIP;
                     LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                 }
 
                 IPTempBox.Text = currentIP;
                 LogBox.SelectedIndex = LogBox.Items.Count - 1;
+            }
+
+            if(pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)
+            {
+                pauseUpdate = false;
+                pauseDate = DateTime.MinValue;
             }
         }
         
@@ -96,6 +107,12 @@ namespace DynDNS_Updater
             if (pauseUpdate)
                 LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
             pauseUpdate = false;
+            pauseDate = DateTime.MinValue;
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,14 +129,7 @@ namespace DynDNS_Updater
 
         private void documentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Process.Start(@"http://ddns.edns.de/?help");
-            }
-            catch
-            {
-                System.Diagnostics.Process.Start(GetStandardBrowserPath(), @"http://ddns.edns.de/?help");
-            }
+            Helper.OpenWebpage(@"http://ddns.edns.de/?help");
         }
 
 
@@ -139,45 +149,5 @@ namespace DynDNS_Updater
             }
         }
 
-        private static string GetStandardBrowserPath()
-        {
-            string browserPath = string.Empty;
-            RegistryKey browserKey = null;
-
-            try
-            {
-                //Read default browser path from Win XP registry key
-                browserKey = Registry.ClassesRoot.OpenSubKey(@"HTTP\shell\open\command", false);
-
-                //If browser path wasn't found, try Win Vista (and newer) registry key
-                if (browserKey == null)
-                {
-                    browserKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http", false); ;
-                }
-
-                //If browser path was found, clean it
-                if (browserKey != null)
-                {
-                    //Remove quotation marks
-                    browserPath = (browserKey.GetValue(null) as string).ToLower().Replace("\"", "");
-
-                    //Cut off optional parameters
-                    if (!browserPath.EndsWith("exe"))
-                    {
-                        browserPath = browserPath.Substring(0, browserPath.LastIndexOf(".exe") + 4);
-                    }
-
-                    //Close registry key
-                    browserKey.Close();
-                }
-            }
-            catch
-            {
-                //Return empty string, if no path was found
-                return string.Empty;
-            }
-            //Return default browsers path
-            return browserPath;
-        }
     }
 }

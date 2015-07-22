@@ -195,10 +195,11 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "DynDNS Updater";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.PerformLayout();
 
         }

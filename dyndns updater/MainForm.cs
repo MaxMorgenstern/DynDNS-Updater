@@ -14,13 +14,54 @@ namespace DynDNS_Updater
         string currentIP;
         bool pauseUpdate;
         DateTime pauseDate;
-        
+
+        NotifyIcon trayIcon;
+
         public MainForm()
         {
             InitializeComponent();
+            InitializeTrayIcon();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+
+
+        // FORM AND INIT //////////////////////////////
+        private void InitializeTrayIcon()
+        {
+            trayIcon = new NotifyIcon();
+            trayIcon.Visible = false;
+            trayIcon.Icon = DynDNS_Updater.Properties.Resources.World;
+
+            trayIcon.BalloonTipIcon = ToolTipIcon.Info;
+            trayIcon.BalloonTipText = "Application running in Background";
+            trayIcon.BalloonTipTitle = "DynDNS Updater";
+            trayIcon.Text = "DynDNS Updater";
+
+            trayIcon.DoubleClick += MainForm_ClickTrayIcon;
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                trayIcon.Text = "DynDNS Updater. Current IP: " + IPTempBox.Text;
+                trayIcon.Visible = true;
+                trayIcon.ShowBalloonTip(3000);
+                Hide();
+            }
+            else if (WindowState == FormWindowState.Normal)
+            {
+                trayIcon.Visible = false;
+            }
+        }
+
+        private void MainForm_ClickTrayIcon(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
         {
             LogBox.DrawItem += LogBox_DrawItem;
             LogBox.Items.Add(new LogBoxItem(Color.Green, "Initialize application"));
@@ -50,14 +91,14 @@ namespace DynDNS_Updater
                 LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a token"));
         }
 
+
+
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
             string tmpIPv4 = DynDNS.GetIPv4();
             //string tmpIPv6 = DynDNS.GetIPv6();
-
-            // TODO: pauseUpdate reset after time
-
+            
             if (!pauseUpdate && currentIP != tmpIPv4
                 && !string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString())
                 && !string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString())
@@ -83,7 +124,15 @@ namespace DynDNS_Updater
                     LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                 }
 
-                IPTempBox.Text = currentIP;
+                if (currentIP == "unknown")
+                {
+                    IPTempBox.Text = tmpIPv4;
+                }
+                else 
+                {
+                    IPTempBox.Text = currentIP;
+                }
+                
                 LogBox.SelectedIndex = LogBox.Items.Count - 1;
             }
 

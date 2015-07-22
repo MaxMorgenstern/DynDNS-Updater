@@ -23,7 +23,7 @@ namespace DynDNS_Updater.Logic
         public static string GetIPv4()
         {
             init ();
-            string externalIP = "";
+            string externalIP = string.Empty;
             try
             {
                 externalIP = (new WebClient()).DownloadString(GetIPv4Address);
@@ -36,7 +36,7 @@ namespace DynDNS_Updater.Logic
         public static string GetIPv6()
         {
             init ();
-            string externalIP = "";
+            string externalIP = string.Empty;
             try
             {
                 externalIP = (new WebClient()).DownloadString(GetIPv6Address);

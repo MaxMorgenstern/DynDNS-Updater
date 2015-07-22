@@ -50,12 +50,12 @@ namespace DynDNS_Updater.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string IP {
+        public string IPType {
             get {
-                return ((string)(this["IP"]));
+                return ((string)(this["IPType"]));
             }
             set {
-                this["IP"] = value;
+                this["IPType"] = value;
             }
         }
     }

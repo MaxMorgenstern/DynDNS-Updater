@@ -12,8 +12,8 @@ namespace DynDNS_Updater
     {
         Timer time;
         string currentIP;
-        bool pauseUpdate;
-        DateTime pauseDate;
+        public bool pauseUpdate;
+        public DateTime pauseDate;
 
         NotifyIcon trayIcon;
 
@@ -96,44 +96,65 @@ namespace DynDNS_Updater
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
-            string tmpIPv4 = DynDNS.GetIPv4();
-            //string tmpIPv6 = DynDNS.GetIPv6();
-            
-            if (!pauseUpdate && currentIP != tmpIPv4
-                && !string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString())
-                && !string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString())
-            )
+            if (!pauseUpdate)
             {
-                string tmpCurrentIP = currentIP;
-                currentIP = tmpIPv4;
-                string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
-
-                Color updateLogColor = Color.Black;
-                bool updateSuccess = false;
-                DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
-
-                LogBox.Items.Add(new LogBoxItem(Color.Black, "Update IP: " + currentIP));
-                LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
-
-                if (!updateSuccess)
+                string tmpIP = string.Empty;
+                if (!string.IsNullOrEmpty(DynDNSSettings.Default["IPType"].ToString())
+                    && DynDNSSettings.Default["IPType"].ToString() == "IPv6")
                 {
+                    tmpIP = DynDNS.GetIPv6();
+                }
+                else
+                {
+                    tmpIP = DynDNS.GetIPv4();
+                }
+
+                if (string.IsNullOrEmpty(tmpIP))
+                {
+                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Can not resolve IP address!"));
+                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                     pauseUpdate = true;
                     pauseDate = DateTime.Now;
-
-                    currentIP = tmpCurrentIP;
-                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                 }
 
-                if (currentIP == "unknown")
+
+                if (!string.IsNullOrEmpty(tmpIP)
+                    && currentIP != tmpIP
+                    && !string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString())
+                    && !string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString())
+                )
                 {
-                    IPTempBox.Text = tmpIPv4;
+                    string tmpCurrentIP = currentIP;
+                    currentIP = tmpIP;
+                    string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
+
+                    Color updateLogColor = Color.Black;
+                    bool updateSuccess = false;
+                    DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
+
+                    LogBox.Items.Add(new LogBoxItem(Color.Black, "Try IP update: " + currentIP));
+                    LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
+
+                    if (!updateSuccess)
+                    {
+                        pauseUpdate = true;
+                        pauseDate = DateTime.Now;
+
+                        currentIP = tmpCurrentIP;
+                        LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
+                    }
+
+                    if (currentIP == "unknown")
+                    {
+                        IPTempBox.Text = tmpIP;
+                    }
+                    else
+                    {
+                        IPTempBox.Text = currentIP;
+                    }
+
+                    LogBox.SelectedIndex = LogBox.Items.Count - 1;
                 }
-                else 
-                {
-                    IPTempBox.Text = currentIP;
-                }
-                
-                LogBox.SelectedIndex = LogBox.Items.Count - 1;
             }
 
             if(pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)
@@ -146,22 +167,11 @@ namespace DynDNS_Updater
 
 
         // FILE //////////////////////////////
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Username / Token"));
-
-            DynDNSSettings.Default["Token"] = UserToken.Text;
-            DynDNSSettings.Default["Username"] = UserName.Text;
-            DynDNSSettings.Default.Save();
-            if (pauseUpdate)
-                LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
-            pauseUpdate = false;
-            pauseDate = DateTime.MinValue;
-        }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Settings s = new Settings(this);
+            s.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -198,5 +208,23 @@ namespace DynDNS_Updater
             }
         }
 
+
+
+        // Handler called by other forms //////////////////////////////
+        public void MainFormSaveHandler()
+        {
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Username / Token"));
+
+            if (pauseUpdate)
+                LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
+            pauseUpdate = false;
+            pauseDate = DateTime.MinValue;
+
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString()))
+                UserName.Text = DynDNSSettings.Default["Username"].ToString();
+            
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString()))
+                UserToken.Text = DynDNSSettings.Default["Token"].ToString();
+        }
     }
 }

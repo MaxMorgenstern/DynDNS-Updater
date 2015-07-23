@@ -17,7 +17,7 @@ namespace DynDNS_Updater.Logic
             GetIPv4Address = "http://v4.ddns.edns.de/ip.php";
             GetIPv6Address = "http://v6.ddns.edns.de/ip.php";
 
-            UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
+            UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}&status=false";
         }
 
         public static string GetIPv4()
@@ -51,12 +51,13 @@ namespace DynDNS_Updater.Logic
             init ();
             try
             {
+                Console.WriteLine(string.Format(UpdateURL, user, token, ip));
                 return (new WebClient()).DownloadString(string.Format (UpdateURL, user, token, ip));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return "badauth";
+                return "dnserr";
             }
         }
 

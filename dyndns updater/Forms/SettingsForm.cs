@@ -8,7 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DynDNSSettings = DynDNS_Updater.Properties.Settings;
+#if DEBUG
+    using DynDNSSettings = DynDNS_Updater.Properties.Settings;
+#else
+    using DynDNSSettings = DynDNS_Updater.Properties.Release; 
+#endif
 
 namespace DynDNS_Updater
 {

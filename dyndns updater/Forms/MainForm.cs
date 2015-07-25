@@ -1,11 +1,15 @@
 ﻿using DynDNS_Updater.Entities;
 using DynDNS_Updater.Properties;
-using DynDNSSettings = DynDNS_Updater.Properties.Settings;
 using DynDNS_Updater.Logic;
 using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+#if DEBUG
+    using DynDNSSettings = DynDNS_Updater.Properties.Settings;
+#else
+    using DynDNSSettings = DynDNS_Updater.Properties.Release; 
+#endif
 
 namespace DynDNS_Updater
 {
@@ -65,11 +69,11 @@ namespace DynDNS_Updater
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Keep settings from older version
-            if (Properties.Settings.Default.UpdateSettings)
+            if (DynDNSSettings.Default.UpdateSettings)
             {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpdateSettings = false;
-                Properties.Settings.Default.Save();
+                DynDNSSettings.Default.Upgrade();
+                DynDNSSettings.Default.UpdateSettings = false;
+                DynDNSSettings.Default.Save();
             }
 
             LogBox.DrawItem += LogBox_DrawItem;

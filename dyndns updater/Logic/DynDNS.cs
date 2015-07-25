@@ -51,7 +51,6 @@ namespace DynDNS_Updater.Logic
             init ();
             try
             {
-                Console.WriteLine(string.Format(UpdateURL, user, token, ip));
                 return (new WebClient()).DownloadString(string.Format (UpdateURL, user, token, ip));
             }
             catch (Exception e)

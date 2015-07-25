@@ -85,11 +85,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -102,17 +108,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\DynDNSSettings.config">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>DynDNSSettings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Include="Properties\DynDNSSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DynDNSSettings.config</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +132,13 @@
   <ItemGroup>
     <Content Include="Properties\World.ico" />
     <Content Include="Resources\World.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

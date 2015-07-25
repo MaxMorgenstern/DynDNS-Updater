@@ -1,5 +1,6 @@
 ﻿using DynDNS_Updater.Entities;
 using DynDNS_Updater.Properties;
+using DynDNSSettings = DynDNS_Updater.Properties.Settings;
 using DynDNS_Updater.Logic;
 using Microsoft.Win32;
 using System;
@@ -63,6 +64,14 @@ namespace DynDNS_Updater
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Keep settings from older version
+            if (Properties.Settings.Default.UpdateSettings)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpdateSettings = false;
+                Properties.Settings.Default.Save();
+            }
+
             LogBox.DrawItem += LogBox_DrawItem;
             LogBox.Items.Add(new LogBoxItem(Color.Green, "Initialize application"));
 
@@ -71,22 +80,26 @@ namespace DynDNS_Updater
             pauseUpdate = false;
             pauseDate = DateTime.MinValue;
 
+
             // Timer Object
             time = new Timer();
             time.Tick += (periodic_update);
-            time.Interval = 500;
+            time.Interval = DynDNSSettings.Default.SystemUpdateInterval;
             time.Start();
+
+
+            Console.WriteLine(time.Interval);
 
             // Initial update
             periodic_update(null, null);
 
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString()))
-                UserName.Text = DynDNSSettings.Default["Username"].ToString();
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Username))
+                UserName.Text = DynDNSSettings.Default.Username;
             else
                 LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a username"));
 
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString()))
-                UserToken.Text = DynDNSSettings.Default["Token"].ToString();
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Token))
+                UserToken.Text = DynDNSSettings.Default.Token;
             else
                 LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a token"));
         }
@@ -99,8 +112,8 @@ namespace DynDNS_Updater
             if (!pauseUpdate)
             {
                 string tmpIP = string.Empty;
-                if (!string.IsNullOrEmpty(DynDNSSettings.Default["IPType"].ToString())
-                    && DynDNSSettings.Default["IPType"].ToString() == "IPv6")
+                if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType)
+                    && DynDNSSettings.Default.IPType == "IPv6")
                 {
                     tmpIP = DynDNS.GetIPv6();
                 }
@@ -120,13 +133,13 @@ namespace DynDNS_Updater
 
                 if (!string.IsNullOrEmpty(tmpIP)
                     && currentIP != tmpIP
-                    && !string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString())
-                    && !string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString())
+                    && !string.IsNullOrEmpty(DynDNSSettings.Default.Username)
+                    && !string.IsNullOrEmpty(DynDNSSettings.Default.Token)
                 )
                 {
                     string tmpCurrentIP = currentIP;
                     currentIP = tmpIP;
-                    string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default["Username"].ToString(), DynDNSSettings.Default["Token"].ToString(), currentIP);
+                    string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default.Username, DynDNSSettings.Default.Token, currentIP);
 
                     Color updateLogColor = Color.Black;
                     bool updateSuccess = false;
@@ -170,7 +183,7 @@ namespace DynDNS_Updater
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings s = new Settings(this);
+            SettingsForm s = new SettingsForm(this);
             s.Show();
         }
 
@@ -220,11 +233,11 @@ namespace DynDNS_Updater
             pauseUpdate = false;
             pauseDate = DateTime.MinValue;
 
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Username"].ToString()))
-                UserName.Text = DynDNSSettings.Default["Username"].ToString();
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Username))
+                UserName.Text = DynDNSSettings.Default.Username;
             
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default["Token"].ToString()))
-                UserToken.Text = DynDNSSettings.Default["Token"].ToString();
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Token))
+                UserToken.Text = DynDNSSettings.Default.Token;
         }
     }
 }

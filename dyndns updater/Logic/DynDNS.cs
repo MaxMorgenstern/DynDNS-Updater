@@ -90,10 +90,12 @@ namespace DynDNS_Updater.Logic
         // TODO
         private static string replace(string message)
         {
+            /*
             message = message.Replace("<Username>", DynDNSSettings.Default["Username"].ToString().Trim());
             message = message.Replace("<Token>", DynDNSSettings.Default["Token"].ToString().Trim());
             message = message.Replace ("<IPv4>", GetIPv4 ().Trim ());
             message = message.Replace ("<IPv6>", GetIPv6 ().Trim ());
+             * */
             return message;
         }
     }

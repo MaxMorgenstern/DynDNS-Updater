@@ -13,11 +13,11 @@ namespace DynDNS_Updater.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    internal sealed partial class DynDNSSettings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static DynDNSSettings defaultInstance = ((DynDNSSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new DynDNSSettings())));
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
-        public static DynDNSSettings Default {
+        public static Settings Default {
             get {
                 return defaultInstance;
             }
@@ -56,6 +56,27 @@ namespace DynDNS_Updater.Properties {
             }
             set {
                 this["IPType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int SystemUpdateInterval {
+            get {
+                return ((int)(this["SystemUpdateInterval"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UpdateSettings {
+            get {
+                return ((bool)(this["UpdateSettings"]));
+            }
+            set {
+                this["UpdateSettings"] = value;
             }
         }
     }

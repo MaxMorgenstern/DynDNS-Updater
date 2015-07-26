@@ -1,13 +1,6 @@
-﻿using DynDNS_Updater.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using DynDNS_Updater.Properties;
 #if DEBUG
     using DynDNSSettings = DynDNS_Updater.Properties.Settings;
 #else

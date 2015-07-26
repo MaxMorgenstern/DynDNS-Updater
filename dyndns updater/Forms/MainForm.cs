@@ -1,10 +1,9 @@
-﻿using DynDNS_Updater.Entities;
-using DynDNS_Updater.Properties;
-using DynDNS_Updater.Logic;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DynDNS_Updater.Entities;
+using DynDNS_Updater.Logic;
+using DynDNS_Updater.Properties;
 #if DEBUG
     using DynDNSSettings = DynDNS_Updater.Properties.Settings;
 #else
@@ -35,7 +34,7 @@ namespace DynDNS_Updater
         {
             trayIcon = new NotifyIcon();
             trayIcon.Visible = false;
-            trayIcon.Icon = DynDNS_Updater.Properties.Resources.World;
+            trayIcon.Icon = Resources.World;
 
             trayIcon.BalloonTipIcon = ToolTipIcon.Info;
             trayIcon.BalloonTipText = "Application running in Background";

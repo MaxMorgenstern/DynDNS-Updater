@@ -1,7 +1,4 @@
-﻿using DynDNS_Updater.Properties;
-using System;
-using System.Drawing;
-using System.Net;
+﻿using System.Drawing;
 
 namespace DynDNS_Updater.Logic
 {
@@ -17,47 +14,25 @@ namespace DynDNS_Updater.Logic
             GetIPv4Address = "http://v4.ddns.edns.de/ip.php";
             GetIPv6Address = "http://v6.ddns.edns.de/ip.php";
 
-            UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}&status=false";
+            UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
         }
 
         public static string GetIPv4()
         {
             init ();
-            string externalIP = string.Empty;
-            try
-            {
-                externalIP = (new WebClient()).DownloadString(GetIPv4Address);
-            } catch(Exception e) { 
-                Console.WriteLine (e);
-            }
-            return externalIP;
+            return Helper.DoWebRequest(GetIPv4Address);
         }
 
         public static string GetIPv6()
         {
             init ();
-            string externalIP = string.Empty;
-            try
-            {
-                externalIP = (new WebClient()).DownloadString(GetIPv6Address);
-            } catch(Exception e) { 
-                Console.WriteLine (e);
-            }
-            return externalIP;
+            return Helper.DoWebRequest(GetIPv6Address);
         }
 
         public static string UpdateIP(string user, string token, string ip)
         {
             init ();
-            try
-            {
-                return (new WebClient()).DownloadString(string.Format (UpdateURL, user, token, ip));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return "dnserr";
-            }
+            return Helper.DoWebRequest(string.Format (UpdateURL, user, token, ip));
         }
 
         public static string ValidateResponse(string response, out bool success, out Color color)

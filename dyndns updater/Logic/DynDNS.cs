@@ -1,37 +1,53 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace DynDNS_Updater.Logic
 {
     class DynDNS
     {
-        private static string GetIPv4Address;
-        private static string GetIPv6Address;
-
-        private static string UpdateURL;
-        
-        private static void init ()
+        private static string GetIPv4URL
         {
-            GetIPv4Address = "http://v4.ddns.edns.de/ip.php";
-            GetIPv6Address = "http://v6.ddns.edns.de/ip.php";
-
-            UpdateURL = "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
+            get
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                if (rnd.Next(0, 100) > 60)
+                    return "http://v4.ddns.edns.de/ip.php";
+                return "http://ipv4.icanhazip.com/";
+            }
         }
+
+        private static string GetIPv6URL
+        {
+            get
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                if (rnd.Next(0, 100) > 60)
+                    return "http://v6.ddns.edns.de/ip.php";
+                return "http://ipv6.icanhazip.com/";
+            }
+        }
+
+        private static string UpdateURL
+        {
+            get
+            {
+                return "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
+            }
+        }
+
 
         public static string GetIPv4()
         {
-            init ();
-            return Helper.DoWebRequest(GetIPv4Address);
+            return Helper.DoWebRequest(GetIPv4URL);
         }
 
         public static string GetIPv6()
         {
-            init ();
-            return Helper.DoWebRequest(GetIPv6Address);
+            return Helper.DoWebRequest(GetIPv6URL);
         }
 
         public static string UpdateIP(string user, string token, string ip)
         {
-            init ();
             return Helper.DoWebRequest(string.Format (UpdateURL, user, token, ip));
         }
 

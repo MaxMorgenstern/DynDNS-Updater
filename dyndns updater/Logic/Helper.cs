@@ -62,6 +62,7 @@ namespace DynDNS_Updater.Logic
 
         public static string DoWebRequest(string request)
         {
+            Console.WriteLine("DoWebRequest: " + request);
             string data = string.Empty;
             HttpWebResponse WebResp = null;
             try

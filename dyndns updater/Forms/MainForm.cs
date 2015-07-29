@@ -10,6 +10,9 @@ using DynDNS_Updater.Properties;
     using DynDNSSettings = DynDNS_Updater.Properties.Release; 
 #endif
 
+// TODO: Status + Last update + start/stop + force update
+// checking interval + log export
+
 namespace DynDNS_Updater
 {
     public partial class MainForm : Form
@@ -112,19 +115,19 @@ namespace DynDNS_Updater
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
+            string tmpIP = string.Empty;
+            if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType)
+                && DynDNSSettings.Default.IPType == "IPv6")
+            {
+                tmpIP = DynDNS.GetIPv6();
+            }
+            else
+            {
+                tmpIP = DynDNS.GetIPv4();
+            }
+
             if (!pauseUpdate)
             {
-                string tmpIP = string.Empty;
-                if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType)
-                    && DynDNSSettings.Default.IPType == "IPv6")
-                {
-                    tmpIP = DynDNS.GetIPv6();
-                }
-                else
-                {
-                    tmpIP = DynDNS.GetIPv4();
-                }
-
                 if (string.IsNullOrEmpty(tmpIP))
                 {
                     LogBox.Items.Add(new LogBoxItem(Color.Red, "Can not resolve IP address!"));
@@ -160,17 +163,19 @@ namespace DynDNS_Updater
                         LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                     }
 
-                    if (currentIP == "unknown")
-                    {
-                        IPTempBox.Text = tmpIP;
-                    }
-                    else
-                    {
-                        IPTempBox.Text = currentIP;
-                    }
+
 
                     LogBox.SelectedIndex = LogBox.Items.Count - 1;
-                }
+                } // if 
+            } // if !pauseUpdate
+
+            if (currentIP == "unknown")
+            {
+                IPTempBox.Text = tmpIP;
+            }
+            else
+            {
+                IPTempBox.Text = currentIP;
             }
 
             if(pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)

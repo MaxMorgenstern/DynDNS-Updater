@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// TODO: Untested
-
 namespace DynDNS_Updater.Logic
 {
     class AutostartHelper
@@ -48,7 +46,7 @@ namespace DynDNS_Updater.Logic
                 rkAppUser.DeleteValue(regAppName, false);
         }
 
-        private static bool IsStartupItemForCurrentUser()
+        public static bool IsStartupItemForCurrentUser()
         {
             // if doesn't exist or not set to run at startup
             if (rkAppUser.GetValue(regAppName) == null)
@@ -72,7 +70,7 @@ namespace DynDNS_Updater.Logic
                 rkAppAll.DeleteValue(regAppName, false);
         }
 
-        private static bool IsStartupItemForAllUser()
+        public static bool IsStartupItemForAllUser()
         {
             // if doesn't exist or not set to run at startup
             if (rkAppAll.GetValue(regAppName) == null)

@@ -15,6 +15,8 @@ namespace DynDNS_Updater
 {
     public partial class MainForm : Form
     {
+        #region Variables
+
         Timer time;
         string currentIP;
         public bool pauseUpdate;
@@ -23,13 +25,14 @@ namespace DynDNS_Updater
         private NotifyIcon trayIcon;
         private ContextMenu trayMenue; 
 
+        #endregion
+
+
         public MainForm()
         {
             InitializeComponent();
             InitializeTrayIcon();
         }
-
-
 
         // FORM AND INIT //////////////////////////////
         private void InitializeTrayIcon()
@@ -45,10 +48,12 @@ namespace DynDNS_Updater
 
             trayIcon.DoubleClick += MainForm_ClickTrayIcon;
 
+            DynDNSSettings.Default.SystemAutostartEnabled = AutostartHelper.IsStartupItemForCurrentUser();
+            DynDNSSettings.Default.Save();
             InitializeContextMenue();
         }
 
-        private void InitializeContextMenue()
+        public void InitializeContextMenue()
         {
             trayMenue = new ContextMenu();
             trayMenue.MenuItems.Add(0, new MenuItem("Show", new System.EventHandler(MainForm_ClickTrayIcon)));
@@ -67,6 +72,9 @@ namespace DynDNS_Updater
 
             trayIcon.ContextMenu = trayMenue;
         }
+
+
+        #region WindowEvents
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -128,6 +136,75 @@ namespace DynDNS_Updater
                 LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a token"));
         }
 
+        #endregion
+
+
+        #region ClickEvents
+
+        // FILE //////////////////////////////
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm s = new SettingsForm(this);
+            s.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // Help //////////////////////////////
+        private void aboutDynDNSUpdaterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox a = new AboutBox();
+            a.Show();
+        }
+
+        private void documentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.OpenWebpage(@"http://ddns.edns.de/?help");
+        }
+
+
+
+
+        // Context Menue //////////////////////////////
+        private void contextMenueEnableAutostart_click(object sender, EventArgs e)
+        {
+            try
+            {
+                AutostartHelper.EnableAutostart();
+                DynDNSSettings.Default.SystemAutostartEnabled = true;
+                DynDNSSettings.Default.Save();
+                InitializeContextMenue();
+
+                LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater added to Autostart"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        private void contextMenueDisableAutostart_click(object sender, EventArgs e)
+        {
+            try
+            {
+                AutostartHelper.DisableAutostart();
+                DynDNSSettings.Default.SystemAutostartEnabled = false;
+                DynDNSSettings.Default.Save();
+                InitializeContextMenue();
+
+                LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater removed from Autostart"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        #endregion
+
 
 
         // TICK //////////////////////////////
@@ -153,7 +230,6 @@ namespace DynDNS_Updater
                     pauseUpdate = true;
                     pauseDate = DateTime.Now;
                 }
-
 
                 if (!string.IsNullOrEmpty(tmpIP)
                     && currentIP != tmpIP
@@ -194,70 +270,10 @@ namespace DynDNS_Updater
                 IPTempBox.Text = currentIP;
             }
 
-            if(pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)
+            if (pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)
             {
                 pauseUpdate = false;
                 pauseDate = DateTime.MinValue;
-            }
-        }
-        
-
-
-        // FILE //////////////////////////////
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SettingsForm s = new SettingsForm(this);
-            s.Show();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        // Help //////////////////////////////
-        private void aboutDynDNSUpdaterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBox a = new AboutBox();
-            a.Show();
-        }
-
-        private void documentationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Helper.OpenWebpage(@"http://ddns.edns.de/?help");
-        }
-
-
-
-
-        // Context Menue //////////////////////////////
-        private void contextMenueEnableAutostart_click(object sender, EventArgs e)
-        {
-            try
-            {
-                AutostartHelper.EnableAutostart();
-                DynDNSSettings.Default.SystemAutostartEnabled = true;
-                DynDNSSettings.Default.Save();
-                InitializeContextMenue();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-
-        private void contextMenueDisableAutostart_click(object sender, EventArgs e)
-        {
-            try
-            {
-                AutostartHelper.DisableAutostart();
-                DynDNSSettings.Default.SystemAutostartEnabled = false;
-                DynDNSSettings.Default.Save();
-                InitializeContextMenue();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
             }
         }
 
@@ -278,6 +294,7 @@ namespace DynDNS_Updater
         }
 
 
+        #region Handler
 
         // Handler called by other forms //////////////////////////////
         public void MainFormSaveHandler()
@@ -305,5 +322,7 @@ namespace DynDNS_Updater
         {
             LogBox.Items.Add(new LogBoxItem(color, text));
         }
+
+        #endregion
     }
 }

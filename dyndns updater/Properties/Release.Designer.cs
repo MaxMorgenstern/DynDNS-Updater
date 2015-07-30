@@ -61,7 +61,7 @@ namespace DynDNS_Updater.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
         public int SystemUpdateInterval {
             get {
                 return ((int)(this["SystemUpdateInterval"]));
@@ -71,12 +71,24 @@ namespace DynDNS_Updater.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UpdateSettings {
+        public bool SystemUpdateSettings {
             get {
-                return ((bool)(this["UpdateSettings"]));
+                return ((bool)(this["SystemUpdateSettings"]));
             }
             set {
-                this["UpdateSettings"] = value;
+                this["SystemUpdateSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SystemAutostartEnabled {
+            get {
+                return ((bool)(this["SystemAutostartEnabled"]));
+            }
+            set {
+                this["SystemAutostartEnabled"] = value;
             }
         }
     }

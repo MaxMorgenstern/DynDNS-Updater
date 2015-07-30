@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DynDNS_Updater.Properties;
 #if DEBUG
     using DynDNSSettings = DynDNS_Updater.Properties.Settings;
+using DynDNS_Updater.Logic;
 #else
     using DynDNSSettings = DynDNS_Updater.Properties.Release; 
 #endif
@@ -11,7 +12,13 @@ namespace DynDNS_Updater
 {
     public partial class SettingsForm : Form
     {
+        #region Variables
+
         private MainForm mainForm = null;
+        private bool tmpAutostartEnabled = false;
+        
+        #endregion
+
 
         public SettingsForm(Form callingForm)
         {
@@ -33,14 +40,28 @@ namespace DynDNS_Updater
                 if (DynDNSSettings.Default.IPType == "IPv6")
                     v6RadioButton.Checked = true;
             }
+            tmpAutostartEnabled = DynDNSSettings.Default.SystemAutostartEnabled;
+            InitializeAutostartButtons();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+
+        #region PrivateHelper
+
+        private void InitializeAutostartButtons()
         {
-            this.Close();
+            if (tmpAutostartEnabled)
+            {
+                enableButton.Enabled = false;
+                disableButton.Enabled = true;
+            }
+            else
+            {
+                enableButton.Enabled = true;
+                disableButton.Enabled = false;
+            }
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveSettings()
         {
             DynDNSSettings.Default.Token = UserToken.Text;
             DynDNSSettings.Default.Username = UserName.Text;
@@ -49,13 +70,54 @@ namespace DynDNS_Updater
             if (v6RadioButton.Checked)
                 ipSetting = "IPv6";
             DynDNSSettings.Default.IPType = ipSetting;
-            
-            DynDNSSettings.Default.Save();
 
+            DynDNSSettings.Default.SystemAutostartEnabled = tmpAutostartEnabled;
+            if (tmpAutostartEnabled)
+            {
+                AutostartHelper.EnableAutostart();
+                mainForm.AddToLogBoxHandler("DynDNS Updater added to Autostart");
+            }
+            else
+            {
+                AutostartHelper.DisableAutostart();
+                mainForm.AddToLogBoxHandler("DynDNS Updater removed from Autostart");
+            }
+
+            DynDNSSettings.Default.Save();
+        }
+
+        #endregion
+
+
+        #region ClickEvents
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+
+            mainForm.InitializeContextMenue();
             mainForm.MainFormSaveHandler();
 
             this.Close();
         }
 
+        private void enableButton_Click(object sender, EventArgs e)
+        {
+            tmpAutostartEnabled = true;
+            InitializeAutostartButtons();
+        }
+
+        private void disableButton_Click(object sender, EventArgs e)
+        {
+            tmpAutostartEnabled = false;
+            InitializeAutostartButtons();
+        }
+
+        #endregion
     }
 }

@@ -8,8 +8,10 @@ namespace DynDNS_Updater.Entities
         public LogBoxItem(Color c, string m)
         {
             ItemColor = c;
-            Message = m;
+            Message = m.TrimEnd(Environment.NewLine.ToCharArray()); ;
             Timestamp = DateTime.Now;
+
+            Logic.Helper.SaveToFile(Timestamp.ToString("dd.MM.yyyy - hh:mm:ss - ") + Message);
         }
         public Color ItemColor { get; set; }
         public string Message { get; set; }

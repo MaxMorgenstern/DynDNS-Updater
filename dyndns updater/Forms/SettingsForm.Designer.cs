@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.MinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.enableButton = new System.Windows.Forms.Button();
             this.disableButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.MinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DynDNS Settings";
+            // 
+            // MinimizedCheckBox
+            // 
+            this.MinimizedCheckBox.AutoSize = true;
+            this.MinimizedCheckBox.Location = new System.Drawing.Point(99, 132);
+            this.MinimizedCheckBox.Name = "MinimizedCheckBox";
+            this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.MinimizedCheckBox.TabIndex = 21;
+            this.MinimizedCheckBox.Text = "Yes";
+            this.MinimizedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Start Minimized:";
             // 
             // enableButton
             // 
@@ -180,25 +199,6 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 133);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Start Minimized:";
-            // 
-            // MinimizedCheckBox
-            // 
-            this.MinimizedCheckBox.AutoSize = true;
-            this.MinimizedCheckBox.Location = new System.Drawing.Point(99, 132);
-            this.MinimizedCheckBox.Name = "MinimizedCheckBox";
-            this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
-            this.MinimizedCheckBox.TabIndex = 21;
-            this.MinimizedCheckBox.Text = "Yes";
-            this.MinimizedCheckBox.UseVisualStyleBackColor = true;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +207,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

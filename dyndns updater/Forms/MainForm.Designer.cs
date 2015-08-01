@@ -54,7 +54,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(265, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(334, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -115,7 +115,7 @@
             this.IPTempBox.Enabled = false;
             this.IPTempBox.Location = new System.Drawing.Point(81, 83);
             this.IPTempBox.Name = "IPTempBox";
-            this.IPTempBox.Size = new System.Drawing.Size(172, 20);
+            this.IPTempBox.Size = new System.Drawing.Size(241, 20);
             this.IPTempBox.TabIndex = 1;
             // 
             // label1
@@ -134,7 +134,7 @@
             this.LogBox.HorizontalScrollbar = true;
             this.LogBox.Location = new System.Drawing.Point(9, 116);
             this.LogBox.Name = "LogBox";
-            this.LogBox.Size = new System.Drawing.Size(244, 186);
+            this.LogBox.Size = new System.Drawing.Size(313, 238);
             this.LogBox.TabIndex = 3;
             // 
             // label2
@@ -160,7 +160,7 @@
             this.UserName.Enabled = false;
             this.UserName.Location = new System.Drawing.Point(81, 31);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(172, 20);
+            this.UserName.Size = new System.Drawing.Size(241, 20);
             this.UserName.TabIndex = 6;
             // 
             // UserToken
@@ -168,14 +168,14 @@
             this.UserToken.Enabled = false;
             this.UserToken.Location = new System.Drawing.Point(81, 57);
             this.UserToken.Name = "UserToken";
-            this.UserToken.Size = new System.Drawing.Size(172, 20);
+            this.UserToken.Size = new System.Drawing.Size(241, 20);
             this.UserToken.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 310);
+            this.ClientSize = new System.Drawing.Size(334, 370);
             this.Controls.Add(this.UserToken);
             this.Controls.Add(this.UserName);
             this.Controls.Add(this.label3);
@@ -184,6 +184,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IPTempBox);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;

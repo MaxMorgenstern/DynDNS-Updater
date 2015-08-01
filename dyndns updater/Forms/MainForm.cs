@@ -299,14 +299,14 @@ namespace DynDNS_Updater
             LogBoxItem item = LogBox.Items[e.Index] as LogBoxItem;
             if (item != null)
             {
-                string currentLogEntry = item.Timestamp.ToString("dd.MM.yyyy - hh:mm:ss") + " - " + item.Message;
+                string currentLogEntry = item.Timestamp.ToString("dd.MM.yyyy - hh:mm:ss - ") + item.Message;
 
                 e.DrawBackground();
                 e.Graphics.DrawString(currentLogEntry, LogBox.Font, new SolidBrush(item.ItemColor), e.Bounds);
                 Size textSize = TextRenderer.MeasureText(currentLogEntry, LogBox.Font);
-                
+
                 if (textSize.Width > LogBox.HorizontalExtent)
-                    LogBox.HorizontalExtent = textSize.Width;
+                    LogBox.HorizontalExtent = textSize.Width + 20;
 
                 e.DrawFocusRectangle();
             }

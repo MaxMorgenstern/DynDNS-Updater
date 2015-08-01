@@ -2,11 +2,32 @@
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace DynDNS_Updater.Logic
 {
     class Helper
     {
+
+        public static void SaveToFile(string logLine)
+        {
+            SaveToFile(logLine, "log.txt");
+        }
+
+        public static void SaveToFile(string logLine, string path)
+        {
+            try
+            {
+                StreamWriter SaveFile = File.AppendText(path);
+                SaveFile.WriteLine(logLine);
+                SaveFile.Close();
+            } 
+            catch (Exception e) { }
+        }
+
+
+        // Open Webpage //////////////////////////////
+        
         public static void OpenWebpage(string url)
         {
             try
@@ -59,6 +80,9 @@ namespace DynDNS_Updater.Logic
             //Return default browsers path
             return browserPath;
         }
+
+
+        // Web Requests //////////////////////////////
 
         public static string DoWebRequest(string request)
         {

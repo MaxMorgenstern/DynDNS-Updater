@@ -51,6 +51,13 @@ namespace DynDNS_Updater
             DynDNSSettings.Default.SystemAutostartEnabled = AutostartHelper.IsStartupItemForCurrentUser();
             DynDNSSettings.Default.Save();
             InitializeContextMenue();
+
+            if (DynDNSSettings.Default.SystemStartMinimized)
+            {
+                WindowState = FormWindowState.Minimized;
+                // On initial load remove explicitly from taskbar
+                ShowInTaskbar = false;
+            }
         }
 
         public void InitializeContextMenue()

@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.enableButton = new System.Windows.Forms.Button();
+            this.disableButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.v6RadioButton = new System.Windows.Forms.RadioButton();
             this.v4RadioButton = new System.Windows.Forms.RadioButton();
@@ -39,14 +42,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.disableButton = new System.Windows.Forms.Button();
-            this.enableButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.MinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.MinimizedCheckBox);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.enableButton);
             this.groupBox1.Controls.Add(this.disableButton);
             this.groupBox1.Controls.Add(this.label4);
@@ -59,15 +63,44 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 129);
+            this.groupBox1.Size = new System.Drawing.Size(278, 161);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DynDNS Settings";
             // 
+            // enableButton
+            // 
+            this.enableButton.Location = new System.Drawing.Point(99, 101);
+            this.enableButton.Name = "enableButton";
+            this.enableButton.Size = new System.Drawing.Size(80, 23);
+            this.enableButton.TabIndex = 19;
+            this.enableButton.Text = "Enable";
+            this.enableButton.UseVisualStyleBackColor = true;
+            this.enableButton.Click += new System.EventHandler(this.enableButton_Click);
+            // 
+            // disableButton
+            // 
+            this.disableButton.Location = new System.Drawing.Point(191, 101);
+            this.disableButton.Name = "disableButton";
+            this.disableButton.Size = new System.Drawing.Size(80, 23);
+            this.disableButton.TabIndex = 18;
+            this.disableButton.Text = "Disable";
+            this.disableButton.UseVisualStyleBackColor = true;
+            this.disableButton.Click += new System.EventHandler(this.disableButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Autostart:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 77);
+            this.label1.Location = new System.Drawing.Point(6, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 16;
@@ -76,7 +109,7 @@
             // v6RadioButton
             // 
             this.v6RadioButton.AutoSize = true;
-            this.v6RadioButton.Location = new System.Drawing.Point(207, 77);
+            this.v6RadioButton.Location = new System.Drawing.Point(191, 78);
             this.v6RadioButton.Name = "v6RadioButton";
             this.v6RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v6RadioButton.TabIndex = 15;
@@ -87,7 +120,7 @@
             // v4RadioButton
             // 
             this.v4RadioButton.AutoSize = true;
-            this.v4RadioButton.Location = new System.Drawing.Point(125, 77);
+            this.v4RadioButton.Location = new System.Drawing.Point(99, 78);
             this.v4RadioButton.Name = "v4RadioButton";
             this.v4RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v4RadioButton.TabIndex = 14;
@@ -97,14 +130,14 @@
             // 
             // UserToken
             // 
-            this.UserToken.Location = new System.Drawing.Point(82, 50);
+            this.UserToken.Location = new System.Drawing.Point(99, 50);
             this.UserToken.Name = "UserToken";
             this.UserToken.Size = new System.Drawing.Size(172, 20);
             this.UserToken.TabIndex = 13;
             // 
             // UserName
             // 
-            this.UserName.Location = new System.Drawing.Point(82, 24);
+            this.UserName.Location = new System.Drawing.Point(99, 24);
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(172, 20);
             this.UserName.TabIndex = 12;
@@ -129,7 +162,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(116, 147);
+            this.saveButton.Location = new System.Drawing.Point(134, 179);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
@@ -139,7 +172,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(197, 147);
+            this.cancelButton.Location = new System.Drawing.Point(215, 179);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -147,40 +180,30 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 106);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Autostart:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Start Minimized:";
             // 
-            // disableButton
+            // MinimizedCheckBox
             // 
-            this.disableButton.Location = new System.Drawing.Point(179, 101);
-            this.disableButton.Name = "disableButton";
-            this.disableButton.Size = new System.Drawing.Size(75, 23);
-            this.disableButton.TabIndex = 18;
-            this.disableButton.Text = "Disable";
-            this.disableButton.UseVisualStyleBackColor = true;
-            this.disableButton.Click += new System.EventHandler(this.disableButton_Click);
-            // 
-            // enableButton
-            // 
-            this.enableButton.Location = new System.Drawing.Point(97, 101);
-            this.enableButton.Name = "enableButton";
-            this.enableButton.Size = new System.Drawing.Size(75, 23);
-            this.enableButton.TabIndex = 19;
-            this.enableButton.Text = "Enable";
-            this.enableButton.UseVisualStyleBackColor = true;
-            this.enableButton.Click += new System.EventHandler(this.enableButton_Click);
+            this.MinimizedCheckBox.AutoSize = true;
+            this.MinimizedCheckBox.Location = new System.Drawing.Point(99, 132);
+            this.MinimizedCheckBox.Name = "MinimizedCheckBox";
+            this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.MinimizedCheckBox.TabIndex = 21;
+            this.MinimizedCheckBox.Text = "Yes";
+            this.MinimizedCheckBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 176);
+            this.ClientSize = new System.Drawing.Size(300, 209);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.groupBox1);
@@ -211,5 +234,7 @@
         private System.Windows.Forms.Button enableButton;
         private System.Windows.Forms.Button disableButton;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox MinimizedCheckBox;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -42,6 +42,8 @@ namespace DynDNS_Updater
             }
             tmpAutostartEnabled = DynDNSSettings.Default.SystemAutostartEnabled;
             InitializeAutostartButtons();
+
+            MinimizedCheckBox.Checked = DynDNSSettings.Default.SystemStartMinimized;
         }
 
 
@@ -82,6 +84,8 @@ namespace DynDNS_Updater
                 AutostartHelper.DisableAutostart();
                 mainForm.AddToLogBoxHandler("DynDNS Updater removed from Autostart");
             }
+
+            DynDNSSettings.Default.SystemStartMinimized = MinimizedCheckBox.Checked;
 
             DynDNSSettings.Default.Save();
         }

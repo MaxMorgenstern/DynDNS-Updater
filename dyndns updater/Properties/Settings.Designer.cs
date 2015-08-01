@@ -91,5 +91,17 @@ namespace DynDNS_Updater.Properties {
                 this["SystemAutostartEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SystemStartMinimized {
+            get {
+                return ((bool)(this["SystemStartMinimized"]));
+            }
+            set {
+                this["SystemStartMinimized"] = value;
+            }
+        }
     }
 }

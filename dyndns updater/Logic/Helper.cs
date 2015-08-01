@@ -81,7 +81,7 @@ namespace DynDNS_Updater.Logic
                 StreamReader _Answer = new StreamReader(Answer);
                 data = _Answer.ReadToEnd();
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
 				Console.WriteLine (ex);
                 data = "dnserr";

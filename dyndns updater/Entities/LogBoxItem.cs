@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace DynDNS_Updater.Entities
 {
@@ -8,8 +9,10 @@ namespace DynDNS_Updater.Entities
         {
             ItemColor = c;
             Message = m;
+            Timestamp = DateTime.Now;
         }
         public Color ItemColor { get; set; }
         public string Message { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

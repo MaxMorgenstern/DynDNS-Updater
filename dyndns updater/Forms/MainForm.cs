@@ -81,7 +81,7 @@ namespace DynDNS_Updater
         }
 
 
-        #region WindowEvents
+        #region FormWindowEvents
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -213,6 +213,7 @@ namespace DynDNS_Updater
         #endregion
 
 
+        #region TimedEvents
 
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
@@ -284,6 +285,10 @@ namespace DynDNS_Updater
             }
         }
 
+        #endregion
+
+
+        #region Helper
 
         // Print Log //////////////////////////////
         private void LogBox_DrawItem(object sender, DrawItemEventArgs e)
@@ -294,11 +299,20 @@ namespace DynDNS_Updater
             LogBoxItem item = LogBox.Items[e.Index] as LogBoxItem;
             if (item != null)
             {
+                string currentLogEntry = item.Timestamp.ToString("dd.MM.yyyy - hh:mm:ss") + " - " + item.Message;
+
                 e.DrawBackground();
-                e.Graphics.DrawString(item.Message, LogBox.Font, new SolidBrush(item.ItemColor), e.Bounds);
+                e.Graphics.DrawString(currentLogEntry, LogBox.Font, new SolidBrush(item.ItemColor), e.Bounds);
+                Size textSize = TextRenderer.MeasureText(currentLogEntry, LogBox.Font);
+                
+                if (textSize.Width > LogBox.HorizontalExtent)
+                    LogBox.HorizontalExtent = textSize.Width;
+
                 e.DrawFocusRectangle();
             }
         }
+
+        #endregion
 
 
         #region Handler
@@ -306,7 +320,7 @@ namespace DynDNS_Updater
         // Handler called by other forms //////////////////////////////
         public void MainFormSaveHandler()
         {
-            LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Username / Token"));
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Settings"));
 
             if (pauseUpdate)
                 LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));

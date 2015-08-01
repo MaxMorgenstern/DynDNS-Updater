@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DynDNS_Updater.Properties;
+using DynDNS_Updater.Logic;
 #if DEBUG
     using DynDNSSettings = DynDNS_Updater.Properties.Settings;
-using DynDNS_Updater.Logic;
 #else
     using DynDNSSettings = DynDNS_Updater.Properties.Release; 
 #endif

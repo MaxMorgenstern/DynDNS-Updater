@@ -131,6 +131,7 @@
             // 
             this.LogBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LogBox.FormattingEnabled = true;
+            this.LogBox.HorizontalScrollbar = true;
             this.LogBox.Location = new System.Drawing.Point(9, 116);
             this.LogBox.Name = "LogBox";
             this.LogBox.Size = new System.Drawing.Size(244, 186);

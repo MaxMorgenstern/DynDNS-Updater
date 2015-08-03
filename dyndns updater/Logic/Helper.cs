@@ -3,15 +3,20 @@ using System.IO;
 using System.Net;
 using Microsoft.Win32;
 using System.Windows.Forms;
+#if DEBUG
+using DynDNSSettings = DynDNS_Updater.Properties.Settings;
+#else
+    using DynDNSSettings = DynDNS_Updater.Properties.Release; 
+#endif
 
 namespace DynDNS_Updater.Logic
 {
     class Helper
     {
-
-        public static void SaveToFile(string logLine)
+        public static void WriteLogFile(string logLine)
         {
-            SaveToFile(logLine, "log.txt");
+            if(DynDNSSettings.Default.SystemWriteLogFile)
+                SaveToFile(logLine, "log.txt");
         }
 
         public static void SaveToFile(string logLine, string path)

@@ -44,6 +44,8 @@ namespace DynDNS_Updater
             InitializeAutostartButtons();
 
             MinimizedCheckBox.Checked = DynDNSSettings.Default.SystemStartMinimized;
+
+            LogfileCheckBox.Checked = DynDNSSettings.Default.SystemWriteLogFile;
         }
 
 
@@ -86,6 +88,8 @@ namespace DynDNS_Updater
             }
 
             DynDNSSettings.Default.SystemStartMinimized = MinimizedCheckBox.Checked;
+
+            DynDNSSettings.Default.SystemWriteLogFile = LogfileCheckBox.Checked;
 
             DynDNSSettings.Default.Save();
         }

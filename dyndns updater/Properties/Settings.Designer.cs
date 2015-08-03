@@ -103,5 +103,17 @@ namespace DynDNS_Updater.Properties {
                 this["SystemStartMinimized"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SystemWriteLogFile {
+            get {
+                return ((bool)(this["SystemWriteLogFile"]));
+            }
+            set {
+                this["SystemWriteLogFile"] = value;
+            }
+        }
     }
 }

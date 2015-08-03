@@ -44,16 +44,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LogfileCheckBox = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.MinimizedCheckBox);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.enableButton);
-            this.groupBox1.Controls.Add(this.disableButton);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.v6RadioButton);
             this.groupBox1.Controls.Add(this.v4RadioButton);
@@ -63,15 +62,15 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 161);
+            this.groupBox1.Size = new System.Drawing.Size(278, 103);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DynDNS Settings";
+            this.groupBox1.Text = "DynDNS Account Settings";
             // 
             // MinimizedCheckBox
             // 
             this.MinimizedCheckBox.AutoSize = true;
-            this.MinimizedCheckBox.Location = new System.Drawing.Point(99, 132);
+            this.MinimizedCheckBox.Location = new System.Drawing.Point(98, 50);
             this.MinimizedCheckBox.Name = "MinimizedCheckBox";
             this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
             this.MinimizedCheckBox.TabIndex = 21;
@@ -81,7 +80,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 133);
+            this.label5.Location = new System.Drawing.Point(5, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 20;
@@ -89,7 +88,7 @@
             // 
             // enableButton
             // 
-            this.enableButton.Location = new System.Drawing.Point(99, 101);
+            this.enableButton.Location = new System.Drawing.Point(98, 19);
             this.enableButton.Name = "enableButton";
             this.enableButton.Size = new System.Drawing.Size(80, 23);
             this.enableButton.TabIndex = 19;
@@ -99,7 +98,7 @@
             // 
             // disableButton
             // 
-            this.disableButton.Location = new System.Drawing.Point(191, 101);
+            this.disableButton.Location = new System.Drawing.Point(190, 19);
             this.disableButton.Name = "disableButton";
             this.disableButton.Size = new System.Drawing.Size(80, 23);
             this.disableButton.TabIndex = 18;
@@ -110,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 106);
+            this.label4.Location = new System.Drawing.Point(5, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 17;
@@ -181,7 +180,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(134, 179);
+            this.saveButton.Location = new System.Drawing.Point(134, 225);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
@@ -191,7 +190,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(215, 179);
+            this.cancelButton.Location = new System.Drawing.Point(215, 225);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -199,11 +198,47 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.LogfileCheckBox);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.MinimizedCheckBox);
+            this.groupBox2.Controls.Add(this.enableButton);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.disableButton);
+            this.groupBox2.Location = new System.Drawing.Point(12, 121);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(278, 98);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "App Settings";
+            // 
+            // LogfileCheckBox
+            // 
+            this.LogfileCheckBox.AutoSize = true;
+            this.LogfileCheckBox.Location = new System.Drawing.Point(98, 73);
+            this.LogfileCheckBox.Name = "LogfileCheckBox";
+            this.LogfileCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.LogfileCheckBox.TabIndex = 23;
+            this.LogfileCheckBox.Text = "Yes";
+            this.LogfileCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Write Log:";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 209);
+            this.ClientSize = new System.Drawing.Size(300, 260);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.groupBox1);
@@ -216,6 +251,8 @@
             this.Load += new System.EventHandler(this.Settings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +274,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox MinimizedCheckBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox LogfileCheckBox;
+        private System.Windows.Forms.Label label6;
     }
 }

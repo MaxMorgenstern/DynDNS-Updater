@@ -44,7 +44,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.UserName = new System.Windows.Forms.TextBox();
             this.UserToken = new System.Windows.Forms.TextBox();
+            this.MainFormStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.StatusStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.UpdateStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Placeholder_StripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.MainFormStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -171,11 +176,44 @@
             this.UserToken.Size = new System.Drawing.Size(241, 20);
             this.UserToken.TabIndex = 7;
             // 
+            // MainFormStatusStrip
+            // 
+            this.MainFormStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusStripStatusLabel,
+            this.Placeholder_StripStatusLabel,
+            this.UpdateStripStatusLabel});
+            this.MainFormStatusStrip.Location = new System.Drawing.Point(0, 368);
+            this.MainFormStatusStrip.Name = "MainFormStatusStrip";
+            this.MainFormStatusStrip.Size = new System.Drawing.Size(334, 22);
+            this.MainFormStatusStrip.SizingGrip = false;
+            this.MainFormStatusStrip.TabIndex = 8;
+            this.MainFormStatusStrip.Text = "statusStrip1";
+            // 
+            // StatusStripStatusLabel
+            // 
+            this.StatusStripStatusLabel.Name = "StatusStripStatusLabel";
+            this.StatusStripStatusLabel.Size = new System.Drawing.Size(40, 17);
+            this.StatusStripStatusLabel.Text = "Active";
+            // 
+            // UpdateStripStatusLabel
+            // 
+            this.UpdateStripStatusLabel.Name = "UpdateStripStatusLabel";
+            this.UpdateStripStatusLabel.Size = new System.Drawing.Size(96, 17);
+            this.UpdateStripStatusLabel.Text = "Update Available";
+            this.UpdateStripStatusLabel.Click += new System.EventHandler(this.Update_StripStatusLabel_Click);
+            // 
+            // Placeholder_StripStatusLabel
+            // 
+            this.Placeholder_StripStatusLabel.Name = "Placeholder_StripStatusLabel";
+            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(152, 17);
+            this.Placeholder_StripStatusLabel.Spring = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 370);
+            this.ClientSize = new System.Drawing.Size(334, 390);
+            this.Controls.Add(this.MainFormStatusStrip);
             this.Controls.Add(this.UserToken);
             this.Controls.Add(this.UserName);
             this.Controls.Add(this.label3);
@@ -194,6 +232,8 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.MainFormStatusStrip.ResumeLayout(false);
+            this.MainFormStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,6 +256,10 @@
         private System.Windows.Forms.TextBox UserName;
         private System.Windows.Forms.TextBox UserToken;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip MainFormStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel StatusStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel Placeholder_StripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel UpdateStripStatusLabel;
     }
 }
 

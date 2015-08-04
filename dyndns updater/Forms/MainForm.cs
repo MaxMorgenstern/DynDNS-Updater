@@ -10,6 +10,7 @@ using DynDNS_Updater.Properties;
     using DynDNSSettings = DynDNS_Updater.Properties.Release; 
 #endif
 
+// TODO: Icons by - https://icons8.com
 
 namespace DynDNS_Updater
 {

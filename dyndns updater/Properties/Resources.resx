@@ -118,6 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="IPAddress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IPAddress.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-G.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_G1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-G.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_R" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-R.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_R1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-R.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-Y.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningShield_Y1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarningShield-Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="World" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\World.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

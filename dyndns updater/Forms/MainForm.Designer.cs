@@ -46,8 +46,8 @@
             this.UserToken = new System.Windows.Forms.TextBox();
             this.MainFormStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.UpdateStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Placeholder_StripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.UpdateStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.MainFormStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -182,7 +182,7 @@
             this.StatusStripStatusLabel,
             this.Placeholder_StripStatusLabel,
             this.UpdateStripStatusLabel});
-            this.MainFormStatusStrip.Location = new System.Drawing.Point(0, 368);
+            this.MainFormStatusStrip.Location = new System.Drawing.Point(0, 363);
             this.MainFormStatusStrip.Name = "MainFormStatusStrip";
             this.MainFormStatusStrip.Size = new System.Drawing.Size(334, 22);
             this.MainFormStatusStrip.SizingGrip = false;
@@ -195,24 +195,25 @@
             this.StatusStripStatusLabel.Size = new System.Drawing.Size(40, 17);
             this.StatusStripStatusLabel.Text = "Active";
             // 
-            // UpdateStripStatusLabel
-            // 
-            this.UpdateStripStatusLabel.Name = "UpdateStripStatusLabel";
-            this.UpdateStripStatusLabel.Size = new System.Drawing.Size(96, 17);
-            this.UpdateStripStatusLabel.Text = "Update Available";
-            this.UpdateStripStatusLabel.Click += new System.EventHandler(this.Update_StripStatusLabel_Click);
-            // 
             // Placeholder_StripStatusLabel
             // 
             this.Placeholder_StripStatusLabel.Name = "Placeholder_StripStatusLabel";
-            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(152, 17);
+            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(136, 17);
             this.Placeholder_StripStatusLabel.Spring = true;
+            // 
+            // UpdateStripStatusLabel
+            // 
+            this.UpdateStripStatusLabel.Image = global::DynDNS_Updater.Properties.Resources.WarningShield_Y1;
+            this.UpdateStripStatusLabel.Name = "UpdateStripStatusLabel";
+            this.UpdateStripStatusLabel.Size = new System.Drawing.Size(112, 17);
+            this.UpdateStripStatusLabel.Text = "Update Available";
+            this.UpdateStripStatusLabel.Click += new System.EventHandler(this.Update_StripStatusLabel_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 390);
+            this.ClientSize = new System.Drawing.Size(334, 385);
             this.Controls.Add(this.MainFormStatusStrip);
             this.Controls.Add(this.UserToken);
             this.Controls.Add(this.UserName);

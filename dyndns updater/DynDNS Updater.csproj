@@ -157,6 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\World.ico" />
+    <None Include="Resources\IPAddress.ico" />
+    <None Include="Resources\WarningShield-G.ico" />
+    <None Include="Resources\WarningShield-R.ico" />
+    <None Include="Resources\WarningShield-Y.ico" />
+    <None Include="Resources\WarningShield-G.png" />
+    <None Include="Resources\WarningShield-R.png" />
+    <None Include="Resources\WarningShield-Y.png" />
     <Content Include="Resources\World.ico" />
   </ItemGroup>
   <ItemGroup>

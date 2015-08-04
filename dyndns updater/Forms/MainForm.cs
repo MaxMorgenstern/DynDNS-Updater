@@ -21,6 +21,7 @@ namespace DynDNS_Updater
         string currentIP;
         public bool pauseUpdate;
         public DateTime pauseDate;
+        public int pauseDelay;
 
         private NotifyIcon trayIcon;
         private ContextMenu trayMenue; 
@@ -224,6 +225,13 @@ namespace DynDNS_Updater
         // TICK //////////////////////////////
         private void periodic_update(object s, EventArgs e)
         {
+            if (pauseUpdate)
+            {
+                pauseDelay++;
+                if (pauseDelay % 2 == 0)
+                    return;
+            }
+
             string tmpIP = string.Empty;
             if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType)
                 && DynDNSSettings.Default.IPType == "IPv6")
@@ -298,6 +306,7 @@ namespace DynDNS_Updater
             pauseUpdate = true;
             pauseDate = DateTime.Now;
             StatusStripStatusLabel.Text = "Paused";
+            pauseDelay = 1;
         }
 
         private void SystemContinueUpdate()

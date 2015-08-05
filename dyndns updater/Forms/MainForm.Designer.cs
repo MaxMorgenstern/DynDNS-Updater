@@ -48,6 +48,8 @@
             this.StatusStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Placeholder_StripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.UpdateStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.forceUpdateButton = new System.Windows.Forms.Button();
+            this.pauseStartUpdateButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.MainFormStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -182,7 +184,7 @@
             this.StatusStripStatusLabel,
             this.Placeholder_StripStatusLabel,
             this.UpdateStripStatusLabel});
-            this.MainFormStatusStrip.Location = new System.Drawing.Point(0, 363);
+            this.MainFormStatusStrip.Location = new System.Drawing.Point(0, 392);
             this.MainFormStatusStrip.Name = "MainFormStatusStrip";
             this.MainFormStatusStrip.Size = new System.Drawing.Size(334, 22);
             this.MainFormStatusStrip.SizingGrip = false;
@@ -198,7 +200,7 @@
             // Placeholder_StripStatusLabel
             // 
             this.Placeholder_StripStatusLabel.Name = "Placeholder_StripStatusLabel";
-            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(136, 17);
+            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(167, 17);
             this.Placeholder_StripStatusLabel.Spring = true;
             // 
             // UpdateStripStatusLabel
@@ -209,11 +211,33 @@
             this.UpdateStripStatusLabel.Text = "Update Available";
             this.UpdateStripStatusLabel.Click += new System.EventHandler(this.Update_StripStatusLabel_Click);
             // 
+            // forceUpdateButton
+            // 
+            this.forceUpdateButton.Location = new System.Drawing.Point(234, 361);
+            this.forceUpdateButton.Name = "forceUpdateButton";
+            this.forceUpdateButton.Size = new System.Drawing.Size(87, 23);
+            this.forceUpdateButton.TabIndex = 9;
+            this.forceUpdateButton.Text = "Force Update";
+            this.forceUpdateButton.UseVisualStyleBackColor = true;
+            this.forceUpdateButton.Click += new System.EventHandler(this.forceUpdateButton_Click);
+            // 
+            // pauseStartUpdateButton
+            // 
+            this.pauseStartUpdateButton.Location = new System.Drawing.Point(9, 360);
+            this.pauseStartUpdateButton.Name = "pauseStartUpdateButton";
+            this.pauseStartUpdateButton.Size = new System.Drawing.Size(87, 23);
+            this.pauseStartUpdateButton.TabIndex = 10;
+            this.pauseStartUpdateButton.Text = "Pause";
+            this.pauseStartUpdateButton.UseVisualStyleBackColor = true;
+            this.pauseStartUpdateButton.Click += new System.EventHandler(this.pauseStartUpdateButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 385);
+            this.ClientSize = new System.Drawing.Size(334, 414);
+            this.Controls.Add(this.pauseStartUpdateButton);
+            this.Controls.Add(this.forceUpdateButton);
             this.Controls.Add(this.MainFormStatusStrip);
             this.Controls.Add(this.UserToken);
             this.Controls.Add(this.UserName);
@@ -261,6 +285,8 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel Placeholder_StripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel UpdateStripStatusLabel;
+        private System.Windows.Forms.Button forceUpdateButton;
+        private System.Windows.Forms.Button pauseStartUpdateButton;
     }
 }
 

@@ -18,7 +18,8 @@ namespace DynDNS_Updater
     {
         #region Variables
 
-        Timer time;
+        Timer timer_periodic_update;
+        Timer timer_periodic_logbox;
         string currentIP;
         public bool pauseUpdate;
         public DateTime pauseDate;
@@ -122,26 +123,30 @@ namespace DynDNS_Updater
             // Initialize on form load
             currentIP = "unknown";
             SystemContinueUpdate();
-
-
+            
             // Timer Object
-            time = new Timer();
-            time.Tick += (periodic_update);
-            time.Interval = DynDNSSettings.Default.SystemUpdateInterval;
-            time.Start();
+            timer_periodic_update = new Timer();
+            timer_periodic_update.Tick += (periodic_update);
+            timer_periodic_update.Interval = DynDNSSettings.Default.SystemUpdateInterval;
+            timer_periodic_update.Start();
+
+            timer_periodic_logbox = new Timer();
+            timer_periodic_logbox.Tick += (periodic_log_update);
+            timer_periodic_logbox.Interval = DynDNSSettings.Default.SystemUpdateInterval/4;
+            timer_periodic_logbox.Start();
 
             // Initial update
             periodic_update(null, null);
 
+            if (string.IsNullOrEmpty(DynDNSSettings.Default.Token)
+                || string.IsNullOrEmpty(DynDNSSettings.Default.Username))
+                SystemPauseUpdate();
+            
             if (!string.IsNullOrEmpty(DynDNSSettings.Default.Username))
-                UserName.Text = DynDNSSettings.Default.Username;
-            else
-                LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a username"));
+                UserName.Text = DynDNSSettings.Default.Username;                
 
             if (!string.IsNullOrEmpty(DynDNSSettings.Default.Token))
                 UserToken.Text = DynDNSSettings.Default.Token;
-            else
-                LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide a token"));
 
             UpdateStripStatusLabel.Visible = UpdateHelper.IsUpdateAvailable();
         }
@@ -218,12 +223,36 @@ namespace DynDNS_Updater
             Helper.OpenWebpage(@"https://github.com/MaxMorgenstern/DynDNS-Updater/releases/latest");
         }
 
+        private void forceUpdateButton_Click(object sender, EventArgs e)
+        {
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Force update"));
+
+            bool tmpPauseUpdate = pauseUpdate;
+            SystemContinueUpdate();
+            periodic_update(null, null);
+            if (tmpPauseUpdate)
+                SystemPauseUpdate();
+        }
+
+        private void pauseStartUpdateButton_Click(object sender, EventArgs e)
+        {
+            if (pauseUpdate)
+                SystemContinueUpdate();
+            else
+                SystemPauseUpdate();
+        }
+
         #endregion
 
 
         #region TimedEvents
 
         // TICK //////////////////////////////
+        private void periodic_log_update(object s, EventArgs e)
+        {
+            LogBox.SelectedIndex = LogBox.Items.Count - 1;
+        }
+
         private void periodic_update(object s, EventArgs e)
         {
             if (pauseUpdate)
@@ -249,7 +278,6 @@ namespace DynDNS_Updater
                 if (string.IsNullOrEmpty(tmpIP))
                 {
                     LogBox.Items.Add(new LogBoxItem(Color.Red, "Can not resolve IP address!"));
-                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                     SystemPauseUpdate();
                 }
 
@@ -273,13 +301,13 @@ namespace DynDNS_Updater
                     if (!updateSuccess)
                     {
                         SystemPauseUpdate();
-
                         currentIP = tmpCurrentIP;
-                        LogBox.Items.Add(new LogBoxItem(Color.Red, "Update paused"));
                     }
-
-                    LogBox.SelectedIndex = LogBox.Items.Count - 1;
                 } // if <all update conditions passed>
+                else
+                {
+                    SystemPauseUpdate();
+                }
             } // if !pauseUpdate
 
             if (currentIP == "unknown")
@@ -295,6 +323,7 @@ namespace DynDNS_Updater
             {
                 SystemContinueUpdate();
             }
+            periodic_log_update(null, null);
         }
 
         #endregion
@@ -304,17 +333,33 @@ namespace DynDNS_Updater
 
         private void SystemPauseUpdate()
         {
+            if (pauseUpdate)
+                return;
+
+            if (string.IsNullOrEmpty(DynDNSSettings.Default.Token)
+                || string.IsNullOrEmpty(DynDNSSettings.Default.Username))
+                LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide username and password"));
+
             pauseUpdate = true;
             pauseDate = DateTime.Now;
+            pauseStartUpdateButton.Text = "Start";
             StatusStripStatusLabel.Text = "Paused";
             pauseDelay = 1;
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Update paused"));
+            periodic_log_update(null, null);
         }
 
         private void SystemContinueUpdate()
         {
+            if (!pauseUpdate)
+                return;
             pauseUpdate = false;
             pauseDate = DateTime.MinValue;
+            pauseStartUpdateButton.Text = "Pause";
             StatusStripStatusLabel.Text = "Ready";
+
+            LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
+            periodic_log_update(null, null);
         }
 
         // Print Log //////////////////////////////
@@ -349,8 +394,6 @@ namespace DynDNS_Updater
         {
             LogBox.Items.Add(new LogBoxItem(Color.Black, "Save Settings"));
 
-            if (pauseUpdate)
-                LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
             SystemContinueUpdate();
 
             if (!string.IsNullOrEmpty(DynDNSSettings.Default.Username))
@@ -371,7 +414,6 @@ namespace DynDNS_Updater
         }
 
         #endregion
-
 
     }
 }

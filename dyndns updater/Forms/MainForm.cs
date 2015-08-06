@@ -228,6 +228,7 @@ namespace DynDNS_Updater
             LogBox.Items.Add(new LogBoxItem(Color.Black, "Force update"));
 
             bool tmpPauseUpdate = pauseUpdate;
+            currentIP = "";
             SystemContinueUpdate();
             periodic_update(null, null);
             if (tmpPauseUpdate)
@@ -266,11 +267,11 @@ namespace DynDNS_Updater
             if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType)
                 && DynDNSSettings.Default.IPType == "IPv6")
             {
-                tmpIP = DynDNS.GetIPv6();
+                tmpIP = DynDNS.GetIPv6().TrimEnd(Environment.NewLine.ToCharArray());
             }
             else
             {
-                tmpIP = DynDNS.GetIPv4();
+                tmpIP = DynDNS.GetIPv4().TrimEnd(Environment.NewLine.ToCharArray());
             }
 
             if (!pauseUpdate)
@@ -282,26 +283,28 @@ namespace DynDNS_Updater
                 }
 
                 if (!string.IsNullOrEmpty(tmpIP)
-                    && currentIP != tmpIP
                     && !string.IsNullOrEmpty(DynDNSSettings.Default.Username)
                     && !string.IsNullOrEmpty(DynDNSSettings.Default.Token)
                 )
                 {
-                    string tmpCurrentIP = currentIP;
-                    currentIP = tmpIP;
-                    string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default.Username, DynDNSSettings.Default.Token, currentIP);
-
-                    Color updateLogColor = Color.Black;
-                    bool updateSuccess = false;
-                    DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
-
-                    LogBox.Items.Add(new LogBoxItem(Color.Black, "Try IP update: " + currentIP));
-                    LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
-
-                    if (!updateSuccess)
+                    if (!currentIP.Equals(tmpIP))
                     {
-                        SystemPauseUpdate();
-                        currentIP = tmpCurrentIP;
+                        string tmpCurrentIP = currentIP;
+                        currentIP = tmpIP;
+                        string updateResponse = DynDNS.UpdateIP(DynDNSSettings.Default.Username, DynDNSSettings.Default.Token, currentIP);
+
+                        Color updateLogColor = Color.Black;
+                        bool updateSuccess = false;
+                        DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
+
+                        LogBox.Items.Add(new LogBoxItem(Color.Black, "Try IP update: " + currentIP));
+                        LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
+
+                        if (!updateSuccess)
+                        {
+                            SystemPauseUpdate();
+                            currentIP = tmpCurrentIP.TrimEnd(Environment.NewLine.ToCharArray());
+                        }
                     }
                 } // if <all update conditions passed>
                 else
@@ -310,7 +313,7 @@ namespace DynDNS_Updater
                 }
             } // if !pauseUpdate
 
-            if (currentIP == "unknown")
+            if (string.IsNullOrEmpty(currentIP) ||  currentIP == "unknown")
             {
                 IPTempBox.Text = tmpIP;
             }

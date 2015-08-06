@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DynDNS_Updater.Settings;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,16 @@ namespace DynDNS_Updater.Logic
         {
             if (!IsStartupItemForCurrentUser())
                 rkAppUser.SetValue(regAppName, Application.ExecutablePath.ToString());
+            AppSettings.AutostartEnabled = true;
+            AppSettings.SaveSettings();
         }
         
         public static void DisableAutostart()
         {
             if (IsStartupItemForCurrentUser())
                 rkAppUser.DeleteValue(regAppName, false);
+            AppSettings.AutostartEnabled = false;
+            AppSettings.SaveSettings();
         }
 
         public static bool IsStartupItemForCurrentUser()

@@ -2,12 +2,8 @@
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
-using System.Windows.Forms;
-#if DEBUG
-using DynDNSSettings = DynDNS_Updater.Properties.Settings;
-#else
-    using DynDNSSettings = DynDNS_Updater.Properties.Release; 
-#endif
+using DynDNS_Updater.Settings;
+
 
 namespace DynDNS_Updater.Logic
 {
@@ -15,8 +11,8 @@ namespace DynDNS_Updater.Logic
     {
         public static void WriteLogFile(string logLine)
         {
-            if(DynDNSSettings.Default.SystemWriteLogFile)
-                SaveToFile(logLine, "log.txt");
+            if (AppSettings.WriteLogFile)
+                SaveToFile(logLine, AppSettings.LogFileName);
         }
 
         public static void SaveToFile(string logLine, string path)
@@ -26,8 +22,7 @@ namespace DynDNS_Updater.Logic
                 StreamWriter SaveFile = File.AppendText(path);
                 SaveFile.WriteLine(logLine);
                 SaveFile.Close();
-            } 
-            catch (Exception e) { }
+            } catch { }
         }
 
 

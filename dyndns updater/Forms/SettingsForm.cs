@@ -2,11 +2,7 @@
 using System.Windows.Forms;
 using DynDNS_Updater.Properties;
 using DynDNS_Updater.Logic;
-#if DEBUG
-    using DynDNSSettings = DynDNS_Updater.Properties.Settings;
-#else
-    using DynDNSSettings = DynDNS_Updater.Properties.Release; 
-#endif
+using DynDNS_Updater.Settings;
 
 namespace DynDNS_Updater
 {
@@ -14,38 +10,34 @@ namespace DynDNS_Updater
     {
         #region Variables
 
-        private MainForm mainForm = null;
         private bool tmpAutostartEnabled = false;
         
         #endregion
 
 
-        public SettingsForm(Form callingForm)
+        public SettingsForm()
         {
-            mainForm = callingForm as MainForm;
             InitializeComponent();
+            AppSettings.Reference.SettingsFormReference = this;
         }
         
         private void Settings_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Username))
-                UserName.Text = DynDNSSettings.Default.Username;
+            if (!string.IsNullOrEmpty(AppSettings.Username))
+                UserName.Text = AppSettings.Username;
 
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default.Token))
-                UserToken.Text = DynDNSSettings.Default.Token;
+            if (!string.IsNullOrEmpty(AppSettings.Token))
+                UserToken.Text = AppSettings.Token;
 
             v4RadioButton.Checked = true;
-            if (!string.IsNullOrEmpty(DynDNSSettings.Default.IPType))
-            {
-                if (DynDNSSettings.Default.IPType == "IPv6")
-                    v6RadioButton.Checked = true;
-            }
-            tmpAutostartEnabled = DynDNSSettings.Default.SystemAutostartEnabled;
+            if(AppSettings.IPType == "IPv6")
+                v6RadioButton.Checked = true;
+
+            tmpAutostartEnabled = AppSettings.AutostartEnabled;
+            MinimizedCheckBox.Checked = AppSettings.StartMinimized;
+            LogfileCheckBox.Checked = AppSettings.WriteLogFile;
+
             InitializeAutostartButtons();
-
-            MinimizedCheckBox.Checked = DynDNSSettings.Default.SystemStartMinimized;
-
-            LogfileCheckBox.Checked = DynDNSSettings.Default.SystemWriteLogFile;
         }
 
 
@@ -67,31 +59,30 @@ namespace DynDNS_Updater
 
         private void SaveSettings()
         {
-            DynDNSSettings.Default.Token = UserToken.Text;
-            DynDNSSettings.Default.Username = UserName.Text;
+            AppSettings.Token = UserToken.Text;
+            AppSettings.Username = UserName.Text;
 
             string ipSetting = "IPv4";
             if (v6RadioButton.Checked)
                 ipSetting = "IPv6";
-            DynDNSSettings.Default.IPType = ipSetting;
+            AppSettings.IPType = ipSetting;
 
-            DynDNSSettings.Default.SystemAutostartEnabled = tmpAutostartEnabled;
+            AppSettings.AutostartEnabled = tmpAutostartEnabled;
             if (tmpAutostartEnabled)
             {
                 AutostartHelper.EnableAutostart();
-                mainForm.AddToLogBoxHandler("DynDNS Updater added to Autostart");
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler("DynDNS Updater added to Autostart");
             }
             else
             {
                 AutostartHelper.DisableAutostart();
-                mainForm.AddToLogBoxHandler("DynDNS Updater removed from Autostart");
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler("DynDNS Updater removed from Autostart");
             }
 
-            DynDNSSettings.Default.SystemStartMinimized = MinimizedCheckBox.Checked;
+            AppSettings.StartMinimized = MinimizedCheckBox.Checked;
+            AppSettings.WriteLogFile = LogfileCheckBox.Checked;
 
-            DynDNSSettings.Default.SystemWriteLogFile = LogfileCheckBox.Checked;
-
-            DynDNSSettings.Default.Save();
+            AppSettings.SaveSettings();
         }
 
         #endregion
@@ -108,8 +99,10 @@ namespace DynDNS_Updater
         {
             SaveSettings();
 
-            mainForm.InitializeContextMenue();
-            mainForm.MainFormSaveHandler();
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Save Settings");
+            AppSettings.Reference.MainFormReference.SystemContinueUpdate();
+            AppSettings.Reference.MainFormReference.InitializeContextMenue();
+            AppSettings.Reference.MainFormReference.MainFormSaveHandler();
 
             this.Close();
         }

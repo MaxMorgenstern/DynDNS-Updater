@@ -90,6 +90,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\LogBoxItem.cs" />
+    <Compile Include="Logic\TrayHelper.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Logic\AutostartHelper.cs" />
     <Compile Include="Logic\Helper.cs" />

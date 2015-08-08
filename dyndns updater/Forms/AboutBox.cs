@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DynDNS_Updater.Logic;
+using DynDNS_Updater.Properties;
+using System;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -13,8 +16,25 @@ namespace DynDNS_Updater
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+
+            Version onlineVersion;
+            Version appVersion;
+            if (UpdateHelper.IsUpdateAvailable(out onlineVersion, out appVersion))
+            {
+                Bitmap objBitmap = new Bitmap(Resources.WarningShield_Y1, new Size(16, 16));
+                this.labelCompanyName.Image = objBitmap;
+                this.labelCompanyName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                this.labelCompanyName.Text = "       Update available - " + onlineVersion.ToString();
+            }
+            else
+            {
+                Bitmap objBitmap = new Bitmap(Resources.WarningShield_G1, new Size(16, 16));
+                this.labelCompanyName.Image = objBitmap;
+                this.labelCompanyName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                this.labelCompanyName.Text = "       Your Application is up to date.";
+            }
+
         }
 
         #region Assembly Attribute Accessors

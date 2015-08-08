@@ -101,7 +101,6 @@ namespace DynDNS_Updater
 
             AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Save Settings");
             AppSettings.Reference.MainFormReference.SystemContinueUpdate();
-            AppSettings.Reference.MainFormReference.InitializeContextMenue();
             AppSettings.Reference.MainFormReference.MainFormSaveHandler();
 
             this.Close();

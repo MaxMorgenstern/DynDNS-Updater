@@ -16,13 +16,8 @@ namespace DynDNS_Updater
 
         Timer timer_periodic_update;
         Timer timer_periodic_logbox;
-
-        public bool pauseUpdate;
-        public DateTime pauseDate;
-        public int pauseDelay;
-
+        
         private NotifyIcon trayIcon;
-        private ContextMenu trayMenue; 
 
         #endregion
 
@@ -37,20 +32,7 @@ namespace DynDNS_Updater
         // FORM AND INIT //////////////////////////////
         private void InitializeTrayIcon()
         {
-            trayIcon = new NotifyIcon();
-            trayIcon.Visible = false;
-            trayIcon.Icon = Resources.World;
-
-            trayIcon.BalloonTipIcon = ToolTipIcon.Info;
-            trayIcon.BalloonTipText = "Application running in Background";
-            trayIcon.BalloonTipTitle = "DynDNS Updater";
-            trayIcon.Text = "DynDNS Updater";
-
-            trayIcon.DoubleClick += MainForm_ClickTrayIcon;
-
-            AppSettings.AutostartEnabled = AutostartHelper.IsStartupItemForCurrentUser();
-            AppSettings.SaveSettings();
-            InitializeContextMenue();
+            trayIcon = TrayHelper.InitializeTrayIcon();
 
             if (AppSettings.StartMinimized)
             {
@@ -59,28 +41,7 @@ namespace DynDNS_Updater
                 ShowInTaskbar = false;
             }
         }
-
-        public void InitializeContextMenue()
-        {
-            trayMenue = new ContextMenu();
-            trayMenue.MenuItems.Add(0, new MenuItem("Show", new System.EventHandler(MainForm_ClickTrayIcon)));
-            trayMenue.MenuItems.Add(1, new MenuItem("Settings", new System.EventHandler(settingsToolStripMenuItem_Click)));
-
-            if (AppSettings.AutostartEnabled)
-            {
-                trayMenue.MenuItems.Add(2, new MenuItem("Disable Autostart", new System.EventHandler(contextMenueDisableAutostart_click)));
-            }
-            else
-            {
-                trayMenue.MenuItems.Add(2, new MenuItem("Enable Autostart", new System.EventHandler(contextMenueEnableAutostart_click)));
-            }
-
-            trayMenue.MenuItems.Add(3, new MenuItem("Exit", new System.EventHandler(exitToolStripMenuItem_Click)));
-
-            trayIcon.ContextMenu = trayMenue;
-        }
-
-
+    
         #region FormWindowEvents
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -98,7 +59,7 @@ namespace DynDNS_Updater
             }
         }
 
-        private void MainForm_ClickTrayIcon(object sender, EventArgs e)
+        public void MainForm_ClickTrayIcon(object sender, EventArgs e)
         {
             Show();
             WindowState = FormWindowState.Normal;
@@ -147,13 +108,13 @@ namespace DynDNS_Updater
         #region ClickEvents
 
         // FILE //////////////////////////////
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingsForm s = new SettingsForm();
             s.Show();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        public void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -170,11 +131,8 @@ namespace DynDNS_Updater
             Helper.OpenWebpage(@"http://ddns.edns.de/?help");
         }
 
-
-
-
         // Context Menue //////////////////////////////
-        private void contextMenueEnableAutostart_click(object sender, EventArgs e)
+        public void ContextMenueEnableAutostart_click(object sender, EventArgs e)
         {
             try
             {
@@ -182,7 +140,7 @@ namespace DynDNS_Updater
                     LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater added to Autostart"));
 
                 AutostartHelper.EnableAutostart();
-                InitializeContextMenue();
+                trayIcon.ContextMenu = TrayHelper.UpdateTrayContextMenue();
             }
             catch (Exception ex)
             {
@@ -190,7 +148,7 @@ namespace DynDNS_Updater
             }
         }
 
-        private void contextMenueDisableAutostart_click(object sender, EventArgs e)
+        public void ContextMenueDisableAutostart_click(object sender, EventArgs e)
         {
             try
             {
@@ -198,7 +156,7 @@ namespace DynDNS_Updater
                     LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater removed from Autostart"));
 
                 AutostartHelper.DisableAutostart();
-                InitializeContextMenue();
+                trayIcon.ContextMenu = TrayHelper.UpdateTrayContextMenue();
             }
             catch (Exception ex)
             {
@@ -215,7 +173,7 @@ namespace DynDNS_Updater
         {
             LogBox.Items.Add(new LogBoxItem(Color.Black, "Force update"));
 
-            bool tmpPauseUpdate = pauseUpdate;
+            bool tmpPauseUpdate = PauseObject.IsPaused;
             AppSettings.CurrentIP = string.Empty;
             SystemContinueUpdate();
             periodic_update(null, null);
@@ -225,7 +183,7 @@ namespace DynDNS_Updater
 
         private void pauseStartUpdateButton_Click(object sender, EventArgs e)
         {
-            if (pauseUpdate)
+            if (PauseObject.IsPaused)
                 SystemContinueUpdate();
             else
                 SystemPauseUpdate();
@@ -244,13 +202,9 @@ namespace DynDNS_Updater
 
         private void periodic_update(object s, EventArgs e)
         {
-            if (pauseUpdate)
-            {
-                pauseDelay++;
-                if (pauseDelay % 2 == 0)
-                    return;
-            }
-
+            if (PauseObject.SkipTick)
+                return;
+            
             string tmpIP = string.Empty;
             if (AppSettings.IPType == "IPv6")
             {
@@ -261,7 +215,7 @@ namespace DynDNS_Updater
                 tmpIP = DynDNS.GetIPv4().TrimEnd(Environment.NewLine.ToCharArray());
             }
 
-            if (!pauseUpdate)
+            if (!PauseObject.IsPaused)
             {
                 if (string.IsNullOrEmpty(tmpIP))
                 {
@@ -306,7 +260,7 @@ namespace DynDNS_Updater
                 IPTempBox.Text = AppSettings.CurrentIP;
             }
 
-            if (pauseUpdate && pauseDate.AddHours(1) < DateTime.Now)
+            if (PauseObject.CheckContinue())
             {
                 SystemContinueUpdate();
             }
@@ -320,32 +274,23 @@ namespace DynDNS_Updater
 
         public void SystemPauseUpdate()
         {
-            if (pauseUpdate)
+            if(!PauseObject.SystemPauseUpdate())
                 return;
 
-            if (!AppSettings.HasUserameAndToken)
-                LogBox.Items.Add(new LogBoxItem(Color.Red, "Provide username and password"));
-
-            pauseUpdate = true;
-            pauseDate = DateTime.Now;
             pauseStartUpdateButton.Text = "Start";
             StatusStripStatusLabel.Text = "Paused";
-            pauseDelay = 1;
-            LogBox.Items.Add(new LogBoxItem(Color.Black, "Update paused"));
+
             periodic_log_update(null, null);
         }
 
         public void SystemContinueUpdate()
         {
-            if (!pauseUpdate)
+            if (!PauseObject.SystemContinueUpdate())
                 return;
 
-            pauseUpdate = false;
-            pauseDate = DateTime.MinValue;
             pauseStartUpdateButton.Text = "Pause";
             StatusStripStatusLabel.Text = "Ready";
 
-            LogBox.Items.Add(new LogBoxItem(Color.Black, "Update continued"));
             periodic_log_update(null, null);
         }
 
@@ -384,6 +329,8 @@ namespace DynDNS_Updater
 
             if (!string.IsNullOrEmpty(AppSettings.Token))
                 UserToken.Text = AppSettings.Token;
+
+            trayIcon.ContextMenu = TrayHelper.UpdateTrayContextMenue();
         }
 
         public void AddToLogBoxHandler(string text)

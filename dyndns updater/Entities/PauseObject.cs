@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace DynDNS_Updater.Entities
 {
-    class PauseObject
+    static class PauseObject
     {
         private static bool paused;
         private static DateTime timestamp = DateTime.MinValue;
@@ -18,35 +18,48 @@ namespace DynDNS_Updater.Entities
             }
         }
 
-        public static void SystemPauseUpdate()
+        public static bool SkipTick
+        {
+            get
+            {
+                if (paused)
+                {
+                    delay++;
+                    if (delay % 2 == 0)
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        public static bool SystemPauseUpdate()
         {
             if (paused)
-                return;
+                return false;
 
             if (!AppSettings.HasUserameAndToken)
                 AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Provide username and password", Color.Red);
 
             paused = true;
             timestamp = DateTime.Now;
-//            pauseStartUpdateButton.Text = "Start";
-//            StatusStripStatusLabel.Text = "Paused";
+
             delay = 1;
             AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Update paused");
-//            periodic_log_update(null, null);
+
+            return true;
         }
 
-        public static void SystemContinueUpdate()
+        public static bool SystemContinueUpdate()
         {
             if (!paused)
-                return;
+                return false;
 
             paused = false;
             timestamp = DateTime.MinValue;
-//            pauseStartUpdateButton.Text = "Pause";
-//            StatusStripStatusLabel.Text = "Ready";
 
             AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Update continued");
-//            periodic_log_update(null, null);
+
+            return true;
         }
 
         public static bool CheckContinue()

@@ -5,13 +5,19 @@ namespace DynDNS_Updater.Logic
 {
     class DynDNS
     {
+        private static Entities.DDNSProvider CurrentProvider
+        {
+            get { return Entities.DDNSProviderList.GetProviderById(Settings.AppSettings.ProviderId); }
+        }
+
         private static string GetIPv4URL
         {
             get
             {
+                
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
                 if (rnd.Next(0, 100) > 60)
-                    return "http://v4.ddns.edns.de/ip.php";
+                    return CurrentProvider.IPv4ResolveURL;
                 return "http://ipv4.icanhazip.com/";
             }
         }
@@ -22,7 +28,7 @@ namespace DynDNS_Updater.Logic
             {
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
                 if (rnd.Next(0, 100) > 60)
-                    return "http://v6.ddns.edns.de/ip.php";
+                    return CurrentProvider.IPv6ResolveURL;
                 return "http://ipv6.icanhazip.com/";
             }
         }
@@ -31,7 +37,7 @@ namespace DynDNS_Updater.Logic
         {
             get
             {
-                return "http://ddns.edns.de/?user={0}&token={1}&ip={2}";
+                return CurrentProvider.UpdateURL;
             }
         }
 
@@ -62,13 +68,13 @@ namespace DynDNS_Updater.Logic
                 color = Color.Red;
             }
 
-            if (response.Contains("nochg"))
+            if (response.Contains(CurrentProvider.APIWarning))
             {
                 success = true;
                 color = Color.OrangeRed;
             }
 
-            if (response.Contains("good"))
+            if (response.Contains(CurrentProvider.APISuccess))
             {
                 success = true;
                 color = Color.Green;

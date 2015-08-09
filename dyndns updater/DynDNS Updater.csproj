@@ -82,6 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\DDNSProvider.cs" />
+    <Compile Include="Entities\DDNSProviderList.cs" />
     <Compile Include="Entities\PauseObject.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>

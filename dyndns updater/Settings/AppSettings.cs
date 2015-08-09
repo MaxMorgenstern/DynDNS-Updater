@@ -36,8 +36,32 @@ namespace DynDNS_Updater.Settings
             set { DynDNSSettings.Default.SystemStartMinimized = value; }
         }
 
+        public static bool ProviderLock
+        {
+            get 
+            {
+                if (DynDNSSettings.Default.SystemLockProvider > 0)
+                    return true;
+                return false;
+            }
+        }
+
 
         // User //////////////////////////////
+
+        public static int ProviderId
+        {
+            get {
+                if (DynDNSSettings.Default.SystemLockProvider > 0)
+                    return DynDNSSettings.Default.SystemLockProvider;
+                return DynDNSSettings.Default.Provider;
+            }
+            set
+            {
+                if (DynDNSSettings.Default.SystemLockProvider == 0)
+                    DynDNSSettings.Default.Provider = value;
+            }
+        }
 
         public static string Username
         {

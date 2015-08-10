@@ -21,5 +21,10 @@ namespace DynDNS_Updater.Entities
 
         public string APISuccess = "good";
         public string APIWarning = "nochg";
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

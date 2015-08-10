@@ -37,7 +37,7 @@ namespace DynDNS_Updater.Logic
         {
             get
             {
-                return CurrentProvider.UpdateURL;
+                return ReplaceTags(CurrentProvider.UpdateURL);
             }
         }
 
@@ -83,15 +83,16 @@ namespace DynDNS_Updater.Logic
             return response;
         }
 
-        // TODO
-        private static string replace(string message)
+
+        private static string ReplaceTags(string message)
         {
-            /*
-            message = message.Replace("<Username>", DynDNSSettings.Default["Username"].ToString().Trim());
-            message = message.Replace("<Token>", DynDNSSettings.Default["Token"].ToString().Trim());
-            message = message.Replace ("<IPv4>", GetIPv4 ().Trim ());
+            message = message.Replace("<Username>", Settings.AppSettings.Username);
+            message = message.Replace("<Token>", Settings.AppSettings.Token);
+            message = message.Replace("<Host>", "");    // TODO
+            message = message.Replace("<IP>", GetIPv4().Trim());
+            message = message.Replace("<IPv4>", GetIPv4().Trim());
             message = message.Replace ("<IPv6>", GetIPv6 ().Trim ());
-             * */
+
             return message;
         }
     }

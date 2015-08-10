@@ -20,9 +20,14 @@ namespace DynDNS_Updater
             InitializeComponent();
             AppSettings.Reference.SettingsFormReference = this;
         }
-        
+
         private void Settings_Load(object sender, EventArgs e)
         {
+            ProviderComboBox.DataSource = Entities.DDNSProviderList.List;
+            ProviderComboBox.SelectedIndex = AppSettings.ProviderId - 1;
+            if(AppSettings.ProviderLock)
+                ProviderComboBox.Enabled = false;
+
             if (!string.IsNullOrEmpty(AppSettings.Username))
                 UserName.Text = AppSettings.Username;
 
@@ -61,6 +66,9 @@ namespace DynDNS_Updater
         {
             AppSettings.Token = UserToken.Text;
             AppSettings.Username = UserName.Text;
+
+            if (!AppSettings.ProviderLock)
+                AppSettings.ProviderId = ((Entities.DDNSProvider)ProviderComboBox.SelectedItem).Id;
 
             string ipSetting = "IPv4";
             if (v6RadioButton.Checked)

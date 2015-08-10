@@ -54,6 +54,8 @@ namespace DynDNS_Updater.Settings
             get {
                 if (DynDNSSettings.Default.SystemLockProvider > 0)
                     return DynDNSSettings.Default.SystemLockProvider;
+                if (DynDNSSettings.Default.Provider == 0)
+                    return 1;
                 return DynDNSSettings.Default.Provider;
             }
             set

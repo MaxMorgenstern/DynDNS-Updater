@@ -30,11 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.MinimizedCheckBox = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.enableButton = new System.Windows.Forms.Button();
-            this.disableButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.ProviderComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.v6RadioButton = new System.Windows.Forms.RadioButton();
             this.v4RadioButton = new System.Windows.Forms.RadioButton();
@@ -42,6 +39,11 @@
             this.UserName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.MinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.enableButton = new System.Windows.Forms.Button();
+            this.disableButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -53,6 +55,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ProviderComboBox);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.v6RadioButton);
             this.groupBox1.Controls.Add(this.v4RadioButton);
@@ -62,10 +66,92 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 103);
+            this.groupBox1.Size = new System.Drawing.Size(278, 127);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DynDNS Account Settings";
+            // 
+            // ProviderComboBox
+            // 
+            this.ProviderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProviderComboBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ProviderComboBox.FormattingEnabled = true;
+            this.ProviderComboBox.Location = new System.Drawing.Point(98, 19);
+            this.ProviderComboBox.Name = "ProviderComboBox";
+            this.ProviderComboBox.Size = new System.Drawing.Size(172, 21);
+            this.ProviderComboBox.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Provider:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "IP Type:";
+            // 
+            // v6RadioButton
+            // 
+            this.v6RadioButton.AutoSize = true;
+            this.v6RadioButton.Location = new System.Drawing.Point(190, 100);
+            this.v6RadioButton.Name = "v6RadioButton";
+            this.v6RadioButton.Size = new System.Drawing.Size(47, 17);
+            this.v6RadioButton.TabIndex = 15;
+            this.v6RadioButton.TabStop = true;
+            this.v6RadioButton.Text = "IPv6";
+            this.v6RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // v4RadioButton
+            // 
+            this.v4RadioButton.AutoSize = true;
+            this.v4RadioButton.Location = new System.Drawing.Point(98, 100);
+            this.v4RadioButton.Name = "v4RadioButton";
+            this.v4RadioButton.Size = new System.Drawing.Size(47, 17);
+            this.v4RadioButton.TabIndex = 14;
+            this.v4RadioButton.TabStop = true;
+            this.v4RadioButton.Text = "IPv4";
+            this.v4RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // UserToken
+            // 
+            this.UserToken.Location = new System.Drawing.Point(98, 72);
+            this.UserToken.Name = "UserToken";
+            this.UserToken.Size = new System.Drawing.Size(172, 20);
+            this.UserToken.TabIndex = 13;
+            // 
+            // UserName
+            // 
+            this.UserName.Location = new System.Drawing.Point(98, 46);
+            this.UserName.Name = "UserName";
+            this.UserName.Size = new System.Drawing.Size(172, 20);
+            this.UserName.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Token:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Username:";
             // 
             // MinimizedCheckBox
             // 
@@ -115,72 +201,9 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Autostart:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "IP Type:";
-            // 
-            // v6RadioButton
-            // 
-            this.v6RadioButton.AutoSize = true;
-            this.v6RadioButton.Location = new System.Drawing.Point(191, 78);
-            this.v6RadioButton.Name = "v6RadioButton";
-            this.v6RadioButton.Size = new System.Drawing.Size(47, 17);
-            this.v6RadioButton.TabIndex = 15;
-            this.v6RadioButton.TabStop = true;
-            this.v6RadioButton.Text = "IPv6";
-            this.v6RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // v4RadioButton
-            // 
-            this.v4RadioButton.AutoSize = true;
-            this.v4RadioButton.Location = new System.Drawing.Point(99, 78);
-            this.v4RadioButton.Name = "v4RadioButton";
-            this.v4RadioButton.Size = new System.Drawing.Size(47, 17);
-            this.v4RadioButton.TabIndex = 14;
-            this.v4RadioButton.TabStop = true;
-            this.v4RadioButton.Text = "IPv4";
-            this.v4RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // UserToken
-            // 
-            this.UserToken.Location = new System.Drawing.Point(99, 50);
-            this.UserToken.Name = "UserToken";
-            this.UserToken.Size = new System.Drawing.Size(172, 20);
-            this.UserToken.TabIndex = 13;
-            // 
-            // UserName
-            // 
-            this.UserName.Location = new System.Drawing.Point(99, 24);
-            this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(172, 20);
-            this.UserName.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Token:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Username:";
-            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(134, 225);
+            this.saveButton.Location = new System.Drawing.Point(134, 249);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
@@ -190,7 +213,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(215, 225);
+            this.cancelButton.Location = new System.Drawing.Point(215, 249);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -207,7 +230,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.disableButton);
-            this.groupBox2.Location = new System.Drawing.Point(12, 121);
+            this.groupBox2.Location = new System.Drawing.Point(12, 145);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(278, 98);
             this.groupBox2.TabIndex = 3;
@@ -237,7 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 260);
+            this.ClientSize = new System.Drawing.Size(300, 282);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
@@ -277,5 +300,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox LogfileCheckBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox ProviderComboBox;
+        private System.Windows.Forms.Label label7;
     }
 }

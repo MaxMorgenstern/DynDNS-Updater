@@ -9,7 +9,15 @@ namespace DynDNS_Updater.Entities
     static class DDNSProviderList
     {
         private static List<DDNSProvider> _list;
-        public static List<DDNSProvider> List { get { return _list; } }
+        public static List<DDNSProvider> List 
+        { 
+            get 
+            {
+                if (_list == null)
+                    PopulateList();
+                return _list; 
+            } 
+        }
 
         public static void PopulateList()
         {

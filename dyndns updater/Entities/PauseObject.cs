@@ -38,13 +38,13 @@ namespace DynDNS_Updater.Entities
                 return false;
 
             if (!AppSettings.HasUserameAndToken)
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Provide username and password", Color.Red);
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Setting_Missing_UsernamePassword, Color.Red);
 
             paused = true;
             timestamp = DateTime.Now;
 
             delay = 1;
-            AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Update paused");
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Pause_Paused);
 
             return true;
         }
@@ -57,7 +57,7 @@ namespace DynDNS_Updater.Entities
             paused = false;
             timestamp = DateTime.MinValue;
 
-            AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Update continued");
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Pause_Continue);
 
             return true;
         }

@@ -35,7 +35,7 @@ namespace DynDNS_Updater
                 UserToken.Text = AppSettings.Token;
 
             v4RadioButton.Checked = true;
-            if(AppSettings.IPType == "IPv6")
+            if (AppSettings.IPType == Language.Static.IPv6)
                 v6RadioButton.Checked = true;
 
             tmpAutostartEnabled = AppSettings.AutostartEnabled;
@@ -70,21 +70,21 @@ namespace DynDNS_Updater
             if (!AppSettings.ProviderLock)
                 AppSettings.ProviderId = ((Entities.DDNSProvider)ProviderComboBox.SelectedItem).Id;
 
-            string ipSetting = "IPv4";
+            string ipSetting = Language.Static.IPv4;
             if (v6RadioButton.Checked)
-                ipSetting = "IPv6";
+                ipSetting = Language.Static.IPv6;
             AppSettings.IPType = ipSetting;
 
             AppSettings.AutostartEnabled = tmpAutostartEnabled;
             if (tmpAutostartEnabled)
             {
                 AutostartHelper.EnableAutostart();
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler("DynDNS Updater added to Autostart");
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Add);
             }
             else
             {
                 AutostartHelper.DisableAutostart();
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler("DynDNS Updater removed from Autostart");
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Remove);
             }
 
             AppSettings.StartMinimized = MinimizedCheckBox.Checked;
@@ -107,7 +107,7 @@ namespace DynDNS_Updater
         {
             SaveSettings();
 
-            AppSettings.Reference.MainFormReference.AddToLogBoxHandler("Save Settings");
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Setting_Saved);
             AppSettings.Reference.MainFormReference.SystemContinueUpdate();
             AppSettings.Reference.MainFormReference.MainFormSaveHandler();
 

@@ -61,9 +61,9 @@ namespace DynDNS_Updater.Logic
         {
             success = false;
             color = Color.Black;
-            if (response.Contains("badauth") || response.Contains("nohost")
-                 || response.Contains("abuse") || response.Contains("!yours")
-                 || response.Contains("dnserr"))
+            if (response.Contains(Language.Static.ResponseBadAuth) || response.Contains(Language.Static.ResponseNoHost)
+                 || response.Contains(Language.Static.ResponseAbuse) || response.Contains(Language.Static.ResponseNotYours)
+                 || response.Contains(Language.Static.ResponseError))
             {
                 color = Color.Red;
             }
@@ -86,12 +86,13 @@ namespace DynDNS_Updater.Logic
 
         private static string ReplaceTags(string message)
         {
-            message = message.Replace("<Username>", Settings.AppSettings.Username);
-            message = message.Replace("<Token>", Settings.AppSettings.Token);
-            message = message.Replace("<Host>", "");    // TODO
-            message = message.Replace("<IP>", GetIPv4().Trim());
-            message = message.Replace("<IPv4>", GetIPv4().Trim());
-            message = message.Replace ("<IPv6>", GetIPv6 ().Trim ());
+            message = message.Replace(Language.Static.TagUsername, Settings.AppSettings.Username);
+            message = message.Replace(Language.Static.TagToken, Settings.AppSettings.Token);
+            message = message.Replace(Language.Static.TagPassword, Settings.AppSettings.Token);
+            message = message.Replace(Language.Static.TagHost, "");    // TODO
+            message = message.Replace(Language.Static.TagIP, GetIPv4().Trim());
+            message = message.Replace(Language.Static.TagIPv4, GetIPv4().Trim());
+            message = message.Replace(Language.Static.TagIPv6, GetIPv6().Trim());
 
             return message;
         }

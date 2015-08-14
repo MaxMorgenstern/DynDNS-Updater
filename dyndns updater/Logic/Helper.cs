@@ -108,7 +108,7 @@ namespace DynDNS_Updater.Logic
             catch (Exception ex)
             {
 				Console.WriteLine (ex);
-                data = "dnserr";
+                data = Language.Static.ResponseError;
             }
             return data;
         }

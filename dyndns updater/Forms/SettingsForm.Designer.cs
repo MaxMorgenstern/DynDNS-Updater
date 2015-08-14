@@ -69,7 +69,7 @@
             this.groupBox1.Size = new System.Drawing.Size(278, 127);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DynDNS Account Settings";
+            this.groupBox1.Text = Language.Window.Settings_Window;
             // 
             // ProviderComboBox
             // 
@@ -88,7 +88,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Provider:";
+            this.label7.Text = Language.Window.Settings_Provider + Language.Static.Colon;
             // 
             // label1
             // 
@@ -97,7 +97,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "IP Type:";
+            this.label1.Text = Language.Window.Settings_IP_Type + Language.Static.Colon;
             // 
             // v6RadioButton
             // 
@@ -107,7 +107,7 @@
             this.v6RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v6RadioButton.TabIndex = 15;
             this.v6RadioButton.TabStop = true;
-            this.v6RadioButton.Text = "IPv6";
+            this.v6RadioButton.Text = Language.Static.IPv6;
             this.v6RadioButton.UseVisualStyleBackColor = true;
             // 
             // v4RadioButton
@@ -118,7 +118,7 @@
             this.v4RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v4RadioButton.TabIndex = 14;
             this.v4RadioButton.TabStop = true;
-            this.v4RadioButton.Text = "IPv4";
+            this.v4RadioButton.Text = Language.Static.IPv4;
             this.v4RadioButton.UseVisualStyleBackColor = true;
             // 
             // UserToken
@@ -142,7 +142,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Token:";
+            this.label3.Text = Language.Window.Token + Language.Static.Colon;
             // 
             // label2
             // 
@@ -151,7 +151,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Username:";
+            this.label2.Text = Language.Window.Username + Language.Static.Colon;
             // 
             // MinimizedCheckBox
             // 
@@ -160,7 +160,7 @@
             this.MinimizedCheckBox.Name = "MinimizedCheckBox";
             this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
             this.MinimizedCheckBox.TabIndex = 21;
-            this.MinimizedCheckBox.Text = "Yes";
+            this.MinimizedCheckBox.Text = Language.Window.Yes;
             this.MinimizedCheckBox.UseVisualStyleBackColor = true;
             // 
             // label5
@@ -170,7 +170,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Start Minimized:";
+            this.label5.Text = Language.Window.Settings_StartMinimized + Language.Static.Colon; ;
             // 
             // enableButton
             // 
@@ -178,7 +178,7 @@
             this.enableButton.Name = "enableButton";
             this.enableButton.Size = new System.Drawing.Size(80, 23);
             this.enableButton.TabIndex = 19;
-            this.enableButton.Text = "Enable";
+            this.enableButton.Text = Language.Window.Enable;
             this.enableButton.UseVisualStyleBackColor = true;
             this.enableButton.Click += new System.EventHandler(this.enableButton_Click);
             // 
@@ -188,7 +188,7 @@
             this.disableButton.Name = "disableButton";
             this.disableButton.Size = new System.Drawing.Size(80, 23);
             this.disableButton.TabIndex = 18;
-            this.disableButton.Text = "Disable";
+            this.disableButton.Text = Language.Window.Disable;
             this.disableButton.UseVisualStyleBackColor = true;
             this.disableButton.Click += new System.EventHandler(this.disableButton_Click);
             // 
@@ -199,7 +199,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Autostart:";
+            this.label4.Text = Language.Window.Autostart + Language.Static.Colon;
             // 
             // saveButton
             // 

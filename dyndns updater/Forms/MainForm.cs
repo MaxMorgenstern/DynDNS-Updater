@@ -48,7 +48,7 @@ namespace DynDNS_Updater
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                trayIcon.Text = "DynDNS Updater. Current IP: " + IPTempBox.Text;
+                trayIcon.Text = String.Format(Language.Window.Tray_Text, IPTempBox.Text);
                 trayIcon.Visible = true;
                 trayIcon.ShowBalloonTip(3000);
                 Hide();
@@ -71,7 +71,7 @@ namespace DynDNS_Updater
             AppSettings.UpgradeSettings();
 
             LogBox.DrawItem += LogBox_DrawItem;
-            LogBox.Items.Add(new LogBoxItem(Color.Green, "Initialize application"));
+            LogBox.Items.Add(new LogBoxItem(Color.Green, Language.Log.App_Init));
 
             // Initialize on form load
             SystemContinueUpdate();
@@ -137,7 +137,7 @@ namespace DynDNS_Updater
             try
             {
                 if (!AppSettings.AutostartEnabled)
-                    LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater added to Autostart"));
+                    LogBox.Items.Add(new LogBoxItem(Color.Black, Language.Log.App_Autostart_Add));
 
                 AutostartHelper.EnableAutostart();
                 trayIcon.ContextMenu = TrayHelper.UpdateTrayContextMenue();
@@ -153,7 +153,7 @@ namespace DynDNS_Updater
             try
             {
                 if (AppSettings.AutostartEnabled)
-                    LogBox.Items.Add(new LogBoxItem(Color.Black, "DynDNS Updater removed from Autostart"));
+                    LogBox.Items.Add(new LogBoxItem(Color.Black, Language.Log.App_Autostart_Remove));
 
                 AutostartHelper.DisableAutostart();
                 trayIcon.ContextMenu = TrayHelper.UpdateTrayContextMenue();
@@ -171,7 +171,7 @@ namespace DynDNS_Updater
 
         private void forceUpdateButton_Click(object sender, EventArgs e)
         {
-            LogBox.Items.Add(new LogBoxItem(Color.Black, "Force update"));
+            LogBox.Items.Add(new LogBoxItem(Color.Black, Language.Log.DNS_Update_Force));
 
             bool tmpPauseUpdate = PauseObject.IsPaused;
             AppSettings.CurrentIP = string.Empty;
@@ -206,7 +206,7 @@ namespace DynDNS_Updater
                 return;
             
             string tmpIP = string.Empty;
-            if (AppSettings.IPType == "IPv6")
+            if (AppSettings.IPType == Language.Static.TagIPv6)
             {
                 tmpIP = DynDNS.GetIPv6().TrimEnd(Environment.NewLine.ToCharArray());
             }
@@ -219,7 +219,7 @@ namespace DynDNS_Updater
             {
                 if (string.IsNullOrEmpty(tmpIP))
                 {
-                    LogBox.Items.Add(new LogBoxItem(Color.Red, "Can not resolve IP address!"));
+                    LogBox.Items.Add(new LogBoxItem(Color.Red, Language.Log.DNS_Resolve_Error));
                     SystemPauseUpdate();
                 }
 
@@ -235,7 +235,7 @@ namespace DynDNS_Updater
                         bool updateSuccess = false;
                         DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
 
-                        LogBox.Items.Add(new LogBoxItem(Color.Black, "Try IP update: " + AppSettings.CurrentIP));
+                        LogBox.Items.Add(new LogBoxItem(Color.Black, String.Format(Language.Log.DNS_Update_Try, AppSettings.CurrentIP)));
                         LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
 
                         if (!updateSuccess)
@@ -251,7 +251,7 @@ namespace DynDNS_Updater
                 }
             } // if !pauseUpdate
 
-            if (AppSettings.CurrentIP == "unknown")
+            if (AppSettings.CurrentIP == Language.Static.Unknown)
             {
                 IPTempBox.Text = tmpIP;
             }
@@ -277,8 +277,8 @@ namespace DynDNS_Updater
             if(!PauseObject.SystemPauseUpdate())
                 return;
 
-            pauseStartUpdateButton.Text = "Start";
-            StatusStripStatusLabel.Text = "Paused";
+            pauseStartUpdateButton.Text = Language.Window.Start;
+            StatusStripStatusLabel.Text = Language.Window.Paused;
 
             periodic_log_update(null, null);
         }
@@ -288,8 +288,8 @@ namespace DynDNS_Updater
             if (!PauseObject.SystemContinueUpdate())
                 return;
 
-            pauseStartUpdateButton.Text = "Pause";
-            StatusStripStatusLabel.Text = "Ready";
+            pauseStartUpdateButton.Text = Language.Window.Pause;
+            StatusStripStatusLabel.Text = Language.Window.Ready;
 
             periodic_log_update(null, null);
         }
@@ -303,7 +303,7 @@ namespace DynDNS_Updater
             LogBoxItem item = LogBox.Items[e.Index] as LogBoxItem;
             if (item != null)
             {
-                string currentLogEntry = item.Timestamp.ToString("dd.MM.yyyy - hh:mm:ss - ") + item.Message;
+                string currentLogEntry = item.Timestamp.ToString(Language.Log.App_Log_Format_Timestamp) + item.Message;
 
                 e.DrawBackground();
                 e.Graphics.DrawString(currentLogEntry, LogBox.Font, new SolidBrush(item.ItemColor), e.Bounds);

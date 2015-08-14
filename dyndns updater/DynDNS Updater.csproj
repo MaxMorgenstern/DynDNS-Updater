@@ -92,6 +92,21 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\LogBoxItem.cs" />
+    <Compile Include="Language\Log.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Log.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Language\Static.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Static.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Language\Window.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Window.resx</DependentUpon>
+    </Compile>
     <Compile Include="Logic\TrayHelper.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Logic\AutostartHelper.cs" />
@@ -133,6 +148,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Log.de-DE.resx" />
+    <EmbeddedResource Include="Language\Log.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Log.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Static.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Static.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Window.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Window.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

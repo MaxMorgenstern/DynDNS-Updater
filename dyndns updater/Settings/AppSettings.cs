@@ -97,13 +97,13 @@ namespace DynDNS_Updater.Settings
             {
                 if (string.IsNullOrEmpty(DynDNSSettings.Default.IPType))
                 {
-                    return "IPv4";
+                    return Language.Static.IPv4;
                 }                
                 return DynDNSSettings.Default.IPType; 
             }
             set 
             {
-                if (value == "IPv4" || value == "IPv6")
+                if (value == Language.Static.IPv4 || value == Language.Static.IPv6)
                     DynDNSSettings.Default.IPType = value;
             }
         }
@@ -114,7 +114,7 @@ namespace DynDNS_Updater.Settings
             get 
             {
                 if(string.IsNullOrEmpty(_currentIP))
-                    return "unknown";
+                    return Language.Static.Unknown;
                 return _currentIP;
             }
             set 

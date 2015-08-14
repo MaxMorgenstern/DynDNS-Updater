@@ -17,9 +17,9 @@ namespace DynDNS_Updater.Logic
             trayIcon.Icon = Resources.World;
 
             trayIcon.BalloonTipIcon = ToolTipIcon.Info;
-            trayIcon.BalloonTipText = "Application running in Background";
-            trayIcon.BalloonTipTitle = "DynDNS Updater";
-            trayIcon.Text = "DynDNS Updater";
+            trayIcon.BalloonTipText = Language.Window.App_Running_Background;
+            trayIcon.BalloonTipTitle = Language.Window.App_Name;
+            trayIcon.Text = Language.Window.App_Name;
 
             trayIcon.DoubleClick += NotifyIcon_DoubleClick;
 
@@ -34,19 +34,19 @@ namespace DynDNS_Updater.Logic
         {
             MainForm MainReference = AppSettings.Reference.MainFormReference;
             trayMenue = new ContextMenu();
-            trayMenue.MenuItems.Add(0, new MenuItem("Show", new System.EventHandler(NotifyIcon_DoubleClick)));
-            trayMenue.MenuItems.Add(1, new MenuItem("Settings", new System.EventHandler(NotifyIcon_SettingsClick)));
+            trayMenue.MenuItems.Add(0, new MenuItem(Language.Window.ShowForm, new System.EventHandler(NotifyIcon_DoubleClick)));
+            trayMenue.MenuItems.Add(1, new MenuItem(Language.Window.Settings, new System.EventHandler(NotifyIcon_SettingsClick)));
 
             if (AppSettings.AutostartEnabled)
             {
-                trayMenue.MenuItems.Add(2, new MenuItem("Disable Autostart", new System.EventHandler(NotifyIcon_DisableAutostartClick)));
+                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.Autostart_Disable, new System.EventHandler(NotifyIcon_DisableAutostartClick)));
             }
             else
             {
-                trayMenue.MenuItems.Add(2, new MenuItem("Enable Autostart", new System.EventHandler(NotifyIcon_EnableAutostartClick)));
+                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.Autostart_Enable, new System.EventHandler(NotifyIcon_EnableAutostartClick)));
             }
 
-            trayMenue.MenuItems.Add(3, new MenuItem("Exit", new System.EventHandler(NotifyIcon_ExitClick)));
+            trayMenue.MenuItems.Add(3, new MenuItem(Language.Window.Exit, new System.EventHandler(NotifyIcon_ExitClick)));
 
             return trayMenue;
         }

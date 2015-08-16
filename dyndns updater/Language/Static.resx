@@ -120,6 +120,9 @@
   <data name="Colon" xml:space="preserve">
     <value>:</value>
   </data>
+  <data name="ConsoleLog_DoWebRequest" xml:space="preserve">
+    <value>DoWebRequest</value>
+  </data>
   <data name="IPv4" xml:space="preserve">
     <value>IPv4</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="ResponseError" xml:space="preserve">
     <value>dnserr</value>
+  </data>
+  <data name="ResponseGood" xml:space="preserve">
+    <value>good</value>
+  </data>
+  <data name="ResponseNoChangeGood" xml:space="preserve">
+    <value>nochg</value>
   </data>
   <data name="ResponseNoHost" xml:space="preserve">
     <value>nohost</value>

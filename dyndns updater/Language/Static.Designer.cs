@@ -70,6 +70,15 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DoWebRequest.
+        /// </summary>
+        internal static string ConsoleLog_DoWebRequest {
+            get {
+                return ResourceManager.GetString("ConsoleLog_DoWebRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IPv4.
         /// </summary>
         internal static string IPv4 {
@@ -111,6 +120,24 @@ namespace DynDNS_Updater.Language {
         internal static string ResponseError {
             get {
                 return ResourceManager.GetString("ResponseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to good.
+        /// </summary>
+        internal static string ResponseGood {
+            get {
+                return ResourceManager.GetString("ResponseGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nochg.
+        /// </summary>
+        internal static string ResponseNoChangeGood {
+            get {
+                return ResourceManager.GetString("ResponseNoChangeGood", resourceCulture);
             }
         }
         

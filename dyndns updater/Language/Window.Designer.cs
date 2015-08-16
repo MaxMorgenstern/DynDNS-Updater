@@ -97,6 +97,15 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App Settings.
+        /// </summary>
+        internal static string AppSettings {
+            get {
+                return ResourceManager.GetString("AppSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autostart.
         /// </summary>
         internal static string Autostart {
@@ -108,18 +117,27 @@ namespace DynDNS_Updater.Language {
         /// <summary>
         ///   Looks up a localized string similar to Disable Autostart.
         /// </summary>
-        internal static string Autostart_Disable {
+        internal static string AutostartDisable {
             get {
-                return ResourceManager.GetString("Autostart_Disable", resourceCulture);
+                return ResourceManager.GetString("AutostartDisable", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable Autostart.
         /// </summary>
-        internal static string Autostart_Enable {
+        internal static string AutostartEnable {
             get {
-                return ResourceManager.GetString("Autostart_Enable", resourceCulture);
+                return ResourceManager.GetString("AutostartEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -250,6 +268,15 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string Settings {
@@ -261,9 +288,9 @@ namespace DynDNS_Updater.Language {
         /// <summary>
         ///   Looks up a localized string similar to IP Type.
         /// </summary>
-        internal static string Settings_IP_Type {
+        internal static string Settings_IPType {
             get {
-                return ResourceManager.GetString("Settings_IP_Type", resourceCulture);
+                return ResourceManager.GetString("Settings_IPType", resourceCulture);
             }
         }
         
@@ -333,18 +360,36 @@ namespace DynDNS_Updater.Language {
         /// <summary>
         ///   Looks up a localized string similar to DynDNS Updater. Current IP: {0}.
         /// </summary>
-        internal static string Tray_Text {
+        internal static string TrayText {
             get {
-                return ResourceManager.GetString("Tray_Text", resourceCulture);
+                return ResourceManager.GetString("TrayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available - .
+        /// </summary>
+        internal static string Update_Available {
+            get {
+                return ResourceManager.GetString("Update_Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Application is up to date..
+        /// </summary>
+        internal static string Update_OK {
+            get {
+                return ResourceManager.GetString("Update_OK", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Update available.
         /// </summary>
-        internal static string Update_Available {
+        internal static string UpdateAvailable {
             get {
-                return ResourceManager.GetString("Update_Available", resourceCulture);
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
             }
         }
         
@@ -354,6 +399,15 @@ namespace DynDNS_Updater.Language {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write Log.
+        /// </summary>
+        internal static string WriteLog {
+            get {
+                return ResourceManager.GetString("WriteLog", resourceCulture);
             }
         }
         

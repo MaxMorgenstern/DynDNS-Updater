@@ -44,7 +44,7 @@ namespace DynDNS_Updater.Entities
             timestamp = DateTime.Now;
 
             delay = 1;
-            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Pause_Paused);
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Paused);
 
             return true;
         }
@@ -57,7 +57,7 @@ namespace DynDNS_Updater.Entities
             paused = false;
             timestamp = DateTime.MinValue;
 
-            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.Pause_Continue);
+            AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Continue);
 
             return true;
         }

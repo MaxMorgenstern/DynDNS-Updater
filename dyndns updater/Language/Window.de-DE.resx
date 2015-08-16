@@ -117,37 +117,124 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="App_Autostart_Add" xml:space="preserve">
-    <value>DynDNS Updater wurde zum Autostart hinzugefügt</value>
+  <data name="About" xml:space="preserve">
+    <value>Über DynDNS Updater</value>
   </data>
-  <data name="App_Autostart_Remove" xml:space="preserve">
-    <value>DynDNS Updater wurde vomAutostart entfernt</value>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
   </data>
-  <data name="App_Continue" xml:space="preserve">
-    <value>Updates Fortgesetzt</value>
+  <data name="AppSettings" xml:space="preserve">
+    <value>Programm Einstellungen</value>
   </data>
-  <data name="App_Init" xml:space="preserve">
-    <value>Initialisiere Anwendung</value>
+  <data name="App_Name" xml:space="preserve">
+    <value>DynDNS Updater</value>
   </data>
-  <data name="App_Log_Format_Timestamp" xml:space="preserve">
-    <value>dd.MM.yyyy - hh:mm:ss - </value>
+  <data name="App_Running_Background" xml:space="preserve">
+    <value>Die Anwendung wird im Hintergrund ausgeführt</value>
   </data>
-  <data name="App_Paused" xml:space="preserve">
-    <value>Updates Pausiert</value>
+  <data name="Autostart" xml:space="preserve">
+    <value>Autostart</value>
   </data>
-  <data name="DNS_Resolve_Error" xml:space="preserve">
-    <value>IP-Adresse kann nicht ermittelt werden!</value>
+  <data name="AutostartDisable" xml:space="preserve">
+    <value>Autostart deaktivieren</value>
   </data>
-  <data name="DNS_Update_Force" xml:space="preserve">
+  <data name="AutostartEnable" xml:space="preserve">
+    <value>Autostart aktivieren</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="CurrentIP" xml:space="preserve">
+    <value>Aktuelle IP</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Deaktivieren</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Dokumentation</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Aktivieren</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="ForceUpdate" xml:space="preserve">
     <value>Update erzwingen</value>
   </data>
-  <data name="DNS_Update_Try" xml:space="preserve">
-    <value>Starte IP Aktualisierung: {0}</value>
+  <data name="Help" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
-  <data name="Setting_Missing_UsernamePassword" xml:space="preserve">
-    <value>Bitte gebe Benutzernamen und Token ein</value>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
   </data>
-  <data name="Setting_Saved" xml:space="preserve">
-    <value>Einstellungen Speichern</value>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Pausiert</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Bereit</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Settings_IPType" xml:space="preserve">
+    <value>IP Typ</value>
+  </data>
+  <data name="Settings_Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="Settings_StartMinimized" xml:space="preserve">
+    <value>Minimiert starten</value>
+  </data>
+  <data name="Settings_Window" xml:space="preserve">
+    <value>DynDNS Einstellungen</value>
+  </data>
+  <data name="ShowForm" xml:space="preserve">
+    <value>Einblenden</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Started" xml:space="preserve">
+    <value>Gestarted</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="TrayText" xml:space="preserve">
+    <value>DynDNS Updater. Aktuelle IP: {0}</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update verfügbar</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Update verfügbar - </value>
+  </data>
+  <data name="Update_OK" xml:space="preserve">
+    <value>Die Anwendung ist auf dem neusten Stand.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="WriteLog" xml:space="preserve">
+    <value>Log Speichern</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

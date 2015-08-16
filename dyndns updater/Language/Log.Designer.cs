@@ -79,6 +79,15 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update continued.
+        /// </summary>
+        internal static string App_Continue {
+            get {
+                return ResourceManager.GetString("App_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initialize application.
         /// </summary>
         internal static string App_Init {
@@ -93,6 +102,15 @@ namespace DynDNS_Updater.Language {
         internal static string App_Log_Format_Timestamp {
             get {
                 return ResourceManager.GetString("App_Log_Format_Timestamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update paused.
+        /// </summary>
+        internal static string App_Paused {
+            get {
+                return ResourceManager.GetString("App_Paused", resourceCulture);
             }
         }
         
@@ -120,24 +138,6 @@ namespace DynDNS_Updater.Language {
         internal static string DNS_Update_Try {
             get {
                 return ResourceManager.GetString("DNS_Update_Try", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update continued.
-        /// </summary>
-        internal static string Pause_Continue {
-            get {
-                return ResourceManager.GetString("Pause_Continue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update paused.
-        /// </summary>
-        internal static string Pause_Paused {
-            get {
-                return ResourceManager.GetString("Pause_Paused", resourceCulture);
             }
         }
         

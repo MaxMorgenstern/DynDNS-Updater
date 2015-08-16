@@ -48,7 +48,7 @@ namespace DynDNS_Updater
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                trayIcon.Text = String.Format(Language.Window.Tray_Text, IPTempBox.Text);
+                trayIcon.Text = String.Format(Language.Window.TrayText, IPTempBox.Text);
                 trayIcon.Visible = true;
                 trayIcon.ShowBalloonTip(3000);
                 Hide();

@@ -123,17 +123,26 @@
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>App Settings</value>
+  </data>
   <data name="App_Name" xml:space="preserve">
     <value>DynDNS Updater</value>
   </data>
   <data name="App_Running_Background" xml:space="preserve">
     <value>Application running in Background</value>
   </data>
-  <data name="Autostart_Disable" xml:space="preserve">
+  <data name="Autostart" xml:space="preserve">
+    <value>Autostart</value>
+  </data>
+  <data name="AutostartDisable" xml:space="preserve">
     <value>Disable Autostart</value>
   </data>
-  <data name="Autostart_Enable" xml:space="preserve">
+  <data name="AutostartEnable" xml:space="preserve">
     <value>Enable Autostart</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="CurrentIP" xml:space="preserve">
     <value>Current IP</value>
@@ -177,10 +186,13 @@
   <data name="Ready" xml:space="preserve">
     <value>Ready</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Settings_IP_Type" xml:space="preserve">
+  <data name="Settings_IPType" xml:space="preserve">
     <value>IP Type</value>
   </data>
   <data name="Settings_Provider" xml:space="preserve">
@@ -204,14 +216,23 @@
   <data name="Token" xml:space="preserve">
     <value>Token</value>
   </data>
-  <data name="Tray_Text" xml:space="preserve">
+  <data name="TrayText" xml:space="preserve">
     <value>DynDNS Updater. Current IP: {0}</value>
   </data>
-  <data name="Update_Available" xml:space="preserve">
+  <data name="UpdateAvailable" xml:space="preserve">
     <value>Update available</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Update available - </value>
+  </data>
+  <data name="Update_OK" xml:space="preserve">
+    <value>Your Application is up to date.</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="WriteLog" xml:space="preserve">
+    <value>Write Log</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

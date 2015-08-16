@@ -39,11 +39,11 @@ namespace DynDNS_Updater.Logic
 
             if (AppSettings.AutostartEnabled)
             {
-                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.Autostart_Disable, new System.EventHandler(NotifyIcon_DisableAutostartClick)));
+                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.AutostartDisable, new System.EventHandler(NotifyIcon_DisableAutostartClick)));
             }
             else
             {
-                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.Autostart_Enable, new System.EventHandler(NotifyIcon_EnableAutostartClick)));
+                trayMenue.MenuItems.Add(2, new MenuItem(Language.Window.AutostartEnable, new System.EventHandler(NotifyIcon_EnableAutostartClick)));
             }
 
             trayMenue.MenuItems.Add(3, new MenuItem(Language.Window.Exit, new System.EventHandler(NotifyIcon_ExitClick)));

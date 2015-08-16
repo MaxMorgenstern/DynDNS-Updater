@@ -97,7 +97,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = Language.Window.Settings_IP_Type + Language.Static.Colon;
+            this.label1.Text = Language.Window.Settings_IPType + Language.Static.Colon;
             // 
             // v6RadioButton
             // 
@@ -170,7 +170,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = Language.Window.Settings_StartMinimized + Language.Static.Colon; ;
+            this.label5.Text = Language.Window.Settings_StartMinimized + Language.Static.Colon;
             // 
             // enableButton
             // 
@@ -207,7 +207,7 @@
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
-            this.saveButton.Text = "Save";
+            this.saveButton.Text = Language.Window.Save;
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
@@ -217,7 +217,7 @@
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = Language.Window.Cancel;
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
@@ -235,7 +235,7 @@
             this.groupBox2.Size = new System.Drawing.Size(278, 98);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "App Settings";
+            this.groupBox2.Text = Language.Window.AppSettings;
             // 
             // LogfileCheckBox
             // 
@@ -244,7 +244,7 @@
             this.LogfileCheckBox.Name = "LogfileCheckBox";
             this.LogfileCheckBox.Size = new System.Drawing.Size(44, 17);
             this.LogfileCheckBox.TabIndex = 23;
-            this.LogfileCheckBox.Text = "Yes";
+            this.LogfileCheckBox.Text = Language.Window.Yes;
             this.LogfileCheckBox.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -254,7 +254,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 22;
-            this.label6.Text = "Write Log:";
+            this.label6.Text = Language.Window.WriteLog + Language.Static.Colon;
             // 
             // SettingsForm
             // 
@@ -270,7 +270,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
-            this.Text = "Settings";
+            this.Text = Language.Window.Settings;
             this.Load += new System.EventHandler(this.Settings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

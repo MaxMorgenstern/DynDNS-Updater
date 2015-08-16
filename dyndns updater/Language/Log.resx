@@ -123,11 +123,17 @@
   <data name="App_Autostart_Remove" xml:space="preserve">
     <value>DynDNS Updater removed from Autostart</value>
   </data>
+  <data name="App_Continue" xml:space="preserve">
+    <value>Update continued</value>
+  </data>
   <data name="App_Init" xml:space="preserve">
     <value>Initialize application</value>
   </data>
   <data name="App_Log_Format_Timestamp" xml:space="preserve">
     <value>dd.MM.yyyy - hh:mm:ss - </value>
+  </data>
+  <data name="App_Paused" xml:space="preserve">
+    <value>Update paused</value>
   </data>
   <data name="DNS_Resolve_Error" xml:space="preserve">
     <value>Can not resolve IP address!</value>
@@ -137,12 +143,6 @@
   </data>
   <data name="DNS_Update_Try" xml:space="preserve">
     <value>Try IP update: {0}</value>
-  </data>
-  <data name="Pause_Continue" xml:space="preserve">
-    <value>Update continued</value>
-  </data>
-  <data name="Pause_Paused" xml:space="preserve">
-    <value>Update paused</value>
   </data>
   <data name="Setting_Missing_UsernamePassword" xml:space="preserve">
     <value>Provide username and password</value>

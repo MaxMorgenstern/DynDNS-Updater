@@ -25,14 +25,14 @@ namespace DynDNS_Updater
                 Bitmap objBitmap = new Bitmap(Resources.WarningShield_Y1, new Size(16, 16));
                 this.labelCompanyName.Image = objBitmap;
                 this.labelCompanyName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                this.labelCompanyName.Text = "       Update available - " + onlineVersion.ToString();
+                this.labelCompanyName.Text = "       " + Language.Window.Update_Available + onlineVersion.ToString();
             }
             else
             {
                 Bitmap objBitmap = new Bitmap(Resources.WarningShield_G1, new Size(16, 16));
                 this.labelCompanyName.Image = objBitmap;
                 this.labelCompanyName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                this.labelCompanyName.Text = "       Your Application is up to date.";
+                this.labelCompanyName.Text = "       " + Language.Window.Update_OK;
             }
 
         }

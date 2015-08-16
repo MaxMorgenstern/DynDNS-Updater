@@ -19,8 +19,8 @@ namespace DynDNS_Updater.Entities
 
         public bool IPv6Available = true;
 
-        public string APISuccess = "good";
-        public string APIWarning = "nochg";
+        public string APISuccess = Language.Static.ResponseGood;
+        public string APIWarning = Language.Static.ResponseNoChangeGood;
 
         public override string ToString()
         {

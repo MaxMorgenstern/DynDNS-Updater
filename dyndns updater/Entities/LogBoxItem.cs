@@ -11,7 +11,7 @@ namespace DynDNS_Updater.Entities
             Message = m.TrimEnd(Environment.NewLine.ToCharArray()); ;
             Timestamp = DateTime.Now;
 
-            Logic.Helper.WriteLogFile(Timestamp.ToString("dd.MM.yyyy - hh:mm:ss - ") + Message);
+            Logic.Helper.WriteLogFile(Timestamp.ToString(Language.Log.App_Log_Format_Timestamp) + Message);
         }
         public Color ItemColor { get; set; }
         public string Message { get; set; }

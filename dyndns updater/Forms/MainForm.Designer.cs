@@ -73,13 +73,13 @@
             this.exitToolStripMenuItem});
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.startToolStripMenuItem.Text = Language.Window.File;
+            this.startToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.File;
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.settingsToolStripMenuItem.Text = Language.Window.Settings;
+            this.settingsToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Settings;
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -91,7 +91,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exitToolStripMenuItem.Text = Language.Window.Exit;
+            this.exitToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Exit;
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -101,28 +101,28 @@
             this.aboutDynDNSUpdaterToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = Language.Window.Help;
+            this.helpToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Help;
             // 
             // documentationToolStripMenuItem
             // 
             this.documentationToolStripMenuItem.Name = "documentationToolStripMenuItem";
             this.documentationToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.documentationToolStripMenuItem.Text = Language.Window.Documentation;
+            this.documentationToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Documentation;
             this.documentationToolStripMenuItem.Click += new System.EventHandler(this.documentationToolStripMenuItem_Click);
             // 
             // aboutDynDNSUpdaterToolStripMenuItem
             // 
             this.aboutDynDNSUpdaterToolStripMenuItem.Name = "aboutDynDNSUpdaterToolStripMenuItem";
             this.aboutDynDNSUpdaterToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.aboutDynDNSUpdaterToolStripMenuItem.Text = Language.Window.About;
+            this.aboutDynDNSUpdaterToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.About;
             this.aboutDynDNSUpdaterToolStripMenuItem.Click += new System.EventHandler(this.aboutDynDNSUpdaterToolStripMenuItem_Click);
             // 
             // IPTempBox
             // 
             this.IPTempBox.Enabled = false;
-            this.IPTempBox.Location = new System.Drawing.Point(81, 83);
+            this.IPTempBox.Location = new System.Drawing.Point(92, 83);
             this.IPTempBox.Name = "IPTempBox";
-            this.IPTempBox.Size = new System.Drawing.Size(241, 20);
+            this.IPTempBox.Size = new System.Drawing.Size(230, 20);
             this.IPTempBox.TabIndex = 1;
             // 
             // label1
@@ -165,17 +165,17 @@
             // UserName
             // 
             this.UserName.Enabled = false;
-            this.UserName.Location = new System.Drawing.Point(81, 31);
+            this.UserName.Location = new System.Drawing.Point(92, 31);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(241, 20);
+            this.UserName.Size = new System.Drawing.Size(230, 20);
             this.UserName.TabIndex = 6;
             // 
             // UserToken
             // 
             this.UserToken.Enabled = false;
-            this.UserToken.Location = new System.Drawing.Point(81, 57);
+            this.UserToken.Location = new System.Drawing.Point(92, 57);
             this.UserToken.Name = "UserToken";
-            this.UserToken.Size = new System.Drawing.Size(241, 20);
+            this.UserToken.Size = new System.Drawing.Size(230, 20);
             this.UserToken.TabIndex = 7;
             // 
             // MainFormStatusStrip
@@ -195,20 +195,20 @@
             // 
             this.StatusStripStatusLabel.Name = "StatusStripStatusLabel";
             this.StatusStripStatusLabel.Size = new System.Drawing.Size(40, 17);
-            this.StatusStripStatusLabel.Text = Language.Window.Active;
+            this.StatusStripStatusLabel.Text = global::DynDNS_Updater.Language.Window.Active;
             // 
             // Placeholder_StripStatusLabel
             // 
             this.Placeholder_StripStatusLabel.Name = "Placeholder_StripStatusLabel";
-            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(167, 17);
+            this.Placeholder_StripStatusLabel.Size = new System.Drawing.Size(169, 17);
             this.Placeholder_StripStatusLabel.Spring = true;
             // 
             // UpdateStripStatusLabel
             // 
             this.UpdateStripStatusLabel.Image = global::DynDNS_Updater.Properties.Resources.WarningShield_Y1;
             this.UpdateStripStatusLabel.Name = "UpdateStripStatusLabel";
-            this.UpdateStripStatusLabel.Size = new System.Drawing.Size(112, 17);
-            this.UpdateStripStatusLabel.Text = Language.Window.Update_Available;
+            this.UpdateStripStatusLabel.Size = new System.Drawing.Size(110, 17);
+            this.UpdateStripStatusLabel.Text = global::DynDNS_Updater.Language.Window.UpdateAvailable;
             this.UpdateStripStatusLabel.Click += new System.EventHandler(this.Update_StripStatusLabel_Click);
             // 
             // forceUpdateButton
@@ -217,7 +217,7 @@
             this.forceUpdateButton.Name = "forceUpdateButton";
             this.forceUpdateButton.Size = new System.Drawing.Size(87, 23);
             this.forceUpdateButton.TabIndex = 9;
-            this.forceUpdateButton.Text = Language.Window.ForceUpdate;
+            this.forceUpdateButton.Text = global::DynDNS_Updater.Language.Window.ForceUpdate;
             this.forceUpdateButton.UseVisualStyleBackColor = true;
             this.forceUpdateButton.Click += new System.EventHandler(this.forceUpdateButton_Click);
             // 
@@ -227,7 +227,7 @@
             this.pauseStartUpdateButton.Name = "pauseStartUpdateButton";
             this.pauseStartUpdateButton.Size = new System.Drawing.Size(87, 23);
             this.pauseStartUpdateButton.TabIndex = 10;
-            this.pauseStartUpdateButton.Text = Language.Window.Pause;
+            this.pauseStartUpdateButton.Text = global::DynDNS_Updater.Language.Window.Pause;
             this.pauseStartUpdateButton.UseVisualStyleBackColor = true;
             this.pauseStartUpdateButton.Click += new System.EventHandler(this.pauseStartUpdateButton_Click);
             // 

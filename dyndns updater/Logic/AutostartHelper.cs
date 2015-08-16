@@ -13,7 +13,7 @@ namespace DynDNS_Updater.Logic
     class AutostartHelper
     {
         private static string regKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-        private static string regAppName = "DynDNSUpdater";
+        private static string regAppName = Language.Window.App_Name;
 
         // The path to the key where Windows looks for startup applications
         private static RegistryKey rkAppUser

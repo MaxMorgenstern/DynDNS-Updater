@@ -115,6 +115,15 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please restart the App!.
+        /// </summary>
+        internal static string App_Restart_Needed {
+            get {
+                return ResourceManager.GetString("App_Restart_Needed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can not resolve IP address!.
         /// </summary>
         internal static string DNS_Resolve_Error {

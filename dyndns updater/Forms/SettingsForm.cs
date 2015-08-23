@@ -28,6 +28,9 @@ namespace DynDNS_Updater
             if(AppSettings.ProviderLock)
                 ProviderComboBox.Enabled = false;
 
+            LanguageComboBox.DataSource = Helper.GetAvailableCultures();
+            LanguageComboBox.SelectedIndex = LanguageComboBox.FindString(AppSettings.AppLanguage);
+
             if (!string.IsNullOrEmpty(AppSettings.Username))
                 UserName.Text = AppSettings.Username;
 
@@ -70,21 +73,35 @@ namespace DynDNS_Updater
             if (!AppSettings.ProviderLock)
                 AppSettings.ProviderId = ((Entities.DDNSProvider)ProviderComboBox.SelectedItem).Id;
 
+            string culture = string.Empty;
+            if (!((System.Globalization.CultureInfo)LanguageComboBox.SelectedItem).IsNeutralCulture)
+                culture = LanguageComboBox.SelectedValue.ToString();
+
+            if (AppSettings.AppLanguage != culture)
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Restart_Needed); 
+
+
+            AppSettings.AppLanguage = culture;
+
             string ipSetting = Language.Static.IPv4;
             if (v6RadioButton.Checked)
                 ipSetting = Language.Static.IPv6;
             AppSettings.IPType = ipSetting;
 
+            bool autostartApp = AppSettings.AutostartEnabled;
             AppSettings.AutostartEnabled = tmpAutostartEnabled;
-            if (tmpAutostartEnabled)
+            if (autostartApp != tmpAutostartEnabled)
             {
-                AutostartHelper.EnableAutostart();
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Add);
-            }
-            else
-            {
-                AutostartHelper.DisableAutostart();
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Remove);
+                if (tmpAutostartEnabled)
+                {
+                    AutostartHelper.EnableAutostart();
+                    AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Add);
+                }
+                else
+                {
+                    AutostartHelper.DisableAutostart();
+                    AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Autostart_Remove);
+                }
             }
 
             AppSettings.StartMinimized = MinimizedCheckBox.Checked;

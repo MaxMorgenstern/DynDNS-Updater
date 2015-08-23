@@ -13,7 +13,8 @@ namespace DynDNS_Updater
         [STAThread]
         static void Main()
         {
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+            if (!string.IsNullOrEmpty(Settings.AppSettings.AppLanguage))
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(Settings.AppSettings.AppLanguage);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

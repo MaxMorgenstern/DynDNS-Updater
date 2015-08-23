@@ -171,6 +171,9 @@
   <data name="Host" xml:space="preserve">
     <value>Host</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>

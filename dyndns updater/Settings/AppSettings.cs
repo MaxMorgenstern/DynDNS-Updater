@@ -88,6 +88,12 @@ namespace DynDNS_Updater.Settings
             }
         }
 
+        public static string AppLanguage
+        {
+            get { return DynDNSSettings.Default.Language; }
+            set { DynDNSSettings.Default.Language = value; }
+        }
+
 
         // DYN Settings //////////////////////////////
 

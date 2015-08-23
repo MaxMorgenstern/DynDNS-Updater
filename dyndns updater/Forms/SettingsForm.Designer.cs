@@ -49,6 +49,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LogfileCheckBox = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.LanguageComboBox = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +109,7 @@
             this.v6RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v6RadioButton.TabIndex = 15;
             this.v6RadioButton.TabStop = true;
-            this.v6RadioButton.Text = Language.Static.IPv6;
+            this.v6RadioButton.Text = global::DynDNS_Updater.Language.Static.IPv6;
             this.v6RadioButton.UseVisualStyleBackColor = true;
             // 
             // v4RadioButton
@@ -118,7 +120,7 @@
             this.v4RadioButton.Size = new System.Drawing.Size(47, 17);
             this.v4RadioButton.TabIndex = 14;
             this.v4RadioButton.TabStop = true;
-            this.v4RadioButton.Text = Language.Static.IPv4;
+            this.v4RadioButton.Text = global::DynDNS_Updater.Language.Static.IPv4;
             this.v4RadioButton.UseVisualStyleBackColor = true;
             // 
             // UserToken
@@ -160,7 +162,7 @@
             this.MinimizedCheckBox.Name = "MinimizedCheckBox";
             this.MinimizedCheckBox.Size = new System.Drawing.Size(44, 17);
             this.MinimizedCheckBox.TabIndex = 21;
-            this.MinimizedCheckBox.Text = Language.Window.Yes;
+            this.MinimizedCheckBox.Text = global::DynDNS_Updater.Language.Window.Yes;
             this.MinimizedCheckBox.UseVisualStyleBackColor = true;
             // 
             // label5
@@ -178,7 +180,7 @@
             this.enableButton.Name = "enableButton";
             this.enableButton.Size = new System.Drawing.Size(80, 23);
             this.enableButton.TabIndex = 19;
-            this.enableButton.Text = Language.Window.Enable;
+            this.enableButton.Text = global::DynDNS_Updater.Language.Window.Enable;
             this.enableButton.UseVisualStyleBackColor = true;
             this.enableButton.Click += new System.EventHandler(this.enableButton_Click);
             // 
@@ -188,7 +190,7 @@
             this.disableButton.Name = "disableButton";
             this.disableButton.Size = new System.Drawing.Size(80, 23);
             this.disableButton.TabIndex = 18;
-            this.disableButton.Text = Language.Window.Disable;
+            this.disableButton.Text = global::DynDNS_Updater.Language.Window.Disable;
             this.disableButton.UseVisualStyleBackColor = true;
             this.disableButton.Click += new System.EventHandler(this.disableButton_Click);
             // 
@@ -203,26 +205,28 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(134, 249);
+            this.saveButton.Location = new System.Drawing.Point(134, 278);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
-            this.saveButton.Text = Language.Window.Save;
+            this.saveButton.Text = global::DynDNS_Updater.Language.Window.Save;
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(215, 249);
+            this.cancelButton.Location = new System.Drawing.Point(215, 278);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
-            this.cancelButton.Text = Language.Window.Cancel;
+            this.cancelButton.Text = global::DynDNS_Updater.Language.Window.Cancel;
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.LanguageComboBox);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.LogfileCheckBox);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.MinimizedCheckBox);
@@ -232,7 +236,7 @@
             this.groupBox2.Controls.Add(this.disableButton);
             this.groupBox2.Location = new System.Drawing.Point(12, 145);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 98);
+            this.groupBox2.Size = new System.Drawing.Size(278, 127);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = Language.Window.AppSettings;
@@ -244,7 +248,7 @@
             this.LogfileCheckBox.Name = "LogfileCheckBox";
             this.LogfileCheckBox.Size = new System.Drawing.Size(44, 17);
             this.LogfileCheckBox.TabIndex = 23;
-            this.LogfileCheckBox.Text = Language.Window.Yes;
+            this.LogfileCheckBox.Text = global::DynDNS_Updater.Language.Window.Yes;
             this.LogfileCheckBox.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -256,11 +260,30 @@
             this.label6.TabIndex = 22;
             this.label6.Text = Language.Window.WriteLog + Language.Static.Colon;
             // 
+            // LanguageComboBox
+            // 
+            this.LanguageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LanguageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.LanguageComboBox.FormattingEnabled = true;
+            this.LanguageComboBox.Location = new System.Drawing.Point(98, 96);
+            this.LanguageComboBox.Name = "LanguageComboBox";
+            this.LanguageComboBox.Size = new System.Drawing.Size(172, 21);
+            this.LanguageComboBox.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = Language.Window.Language + Language.Static.Colon;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 282);
+            this.ClientSize = new System.Drawing.Size(300, 309);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
@@ -302,5 +325,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ProviderComboBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox LanguageComboBox;
+        private System.Windows.Forms.Label label8;
     }
 }

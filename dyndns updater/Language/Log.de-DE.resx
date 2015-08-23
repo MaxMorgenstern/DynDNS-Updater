@@ -121,7 +121,7 @@
     <value>DynDNS Updater wurde zum Autostart hinzugefügt</value>
   </data>
   <data name="App_Autostart_Remove" xml:space="preserve">
-    <value>DynDNS Updater wurde vomAutostart entfernt</value>
+    <value>DynDNS Updater wurde vom Autostart entfernt</value>
   </data>
   <data name="App_Continue" xml:space="preserve">
     <value>Updates Fortgesetzt</value>
@@ -149,5 +149,8 @@
   </data>
   <data name="Setting_Saved" xml:space="preserve">
     <value>Einstellungen Speichern</value>
+  </data>
+  <data name="App_Restart_Needed" xml:space="preserve">
+    <value>Starte die App neu!</value>
   </data>
 </root>

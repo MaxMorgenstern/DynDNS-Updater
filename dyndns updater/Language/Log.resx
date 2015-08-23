@@ -135,6 +135,9 @@
   <data name="App_Paused" xml:space="preserve">
     <value>Update paused</value>
   </data>
+  <data name="App_Restart_Needed" xml:space="preserve">
+    <value>Please restart the App!</value>
+  </data>
   <data name="DNS_Resolve_Error" xml:space="preserve">
     <value>Can not resolve IP address!</value>
   </data>

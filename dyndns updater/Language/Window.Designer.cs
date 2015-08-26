@@ -142,6 +142,24 @@ namespace DynDNS_Updater.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Changes.
+        /// </summary>
+        internal static string ConfirmationDialog {
+            get {
+                return ResourceManager.GetString("ConfirmationDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart needed for updates to take effect.
+        /// </summary>
+        internal static string ConfirmRestart {
+            get {
+                return ResourceManager.GetString("ConfirmRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current IP.
         /// </summary>
         internal static string CurrentIP {

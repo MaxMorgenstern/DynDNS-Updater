@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DynDNS_Updater.Settings;
+using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Net;
-using Microsoft.Win32;
-using DynDNS_Updater.Settings;
-using System.Collections.ObjectModel;
 using System.Reflection;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Resources;
+using System.Windows.Forms;
 
 
 namespace DynDNS_Updater.Logic

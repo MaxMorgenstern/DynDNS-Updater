@@ -144,6 +144,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ConfirmationDialog" xml:space="preserve">
+    <value>Confirm Changes</value>
+  </data>
+  <data name="ConfirmRestart" xml:space="preserve">
+    <value>Restart needed for updates to take effect</value>
+  </data>
   <data name="CurrentIP" xml:space="preserve">
     <value>Current IP</value>
   </data>

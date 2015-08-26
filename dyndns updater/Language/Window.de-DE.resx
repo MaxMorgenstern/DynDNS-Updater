@@ -240,4 +240,10 @@
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
+  <data name="ConfirmationDialog" xml:space="preserve">
+    <value>Änderungen bestätigen</value>
+  </data>
+  <data name="ConfirmRestart" xml:space="preserve">
+    <value>Die Anwendung muss neu gestartet werden damit die Änderungen angewandt werden.</value>
+  </data>
 </root>

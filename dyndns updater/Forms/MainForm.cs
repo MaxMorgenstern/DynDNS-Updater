@@ -1,10 +1,9 @@
-﻿using System;
+﻿using DynDNS_Updater.Entities;
+using DynDNS_Updater.Logic;
+using DynDNS_Updater.Settings;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using DynDNS_Updater.Entities;
-using DynDNS_Updater.Logic;
-using DynDNS_Updater.Properties;
-using DynDNS_Updater.Settings;
 
 // TODO: Icons by - https://icons8.com
 
@@ -20,7 +19,6 @@ namespace DynDNS_Updater
         private NotifyIcon trayIcon;
 
         #endregion
-
 
         public MainForm()
         {

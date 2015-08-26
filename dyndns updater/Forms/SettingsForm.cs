@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using DynDNS_Updater.Properties;
-using DynDNS_Updater.Logic;
+﻿using DynDNS_Updater.Logic;
 using DynDNS_Updater.Settings;
+using System;
+using System.Windows.Forms;
 
 namespace DynDNS_Updater
 {
@@ -73,15 +72,12 @@ namespace DynDNS_Updater
             if (!AppSettings.ProviderLock)
                 AppSettings.ProviderId = ((Entities.DDNSProvider)ProviderComboBox.SelectedItem).Id;
 
-            string culture = string.Empty;
+            string newCulture = string.Empty;
+            string currentCulture = AppSettings.AppLanguage;
             if (!((System.Globalization.CultureInfo)LanguageComboBox.SelectedItem).IsNeutralCulture)
-                culture = LanguageComboBox.SelectedValue.ToString();
-
-            if (AppSettings.AppLanguage != culture)
-                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Restart_Needed); 
-
-
-            AppSettings.AppLanguage = culture;
+                newCulture = LanguageComboBox.SelectedValue.ToString();
+            
+            AppSettings.AppLanguage = newCulture;           
 
             string ipSetting = Language.Static.IPv4;
             if (v6RadioButton.Checked)
@@ -108,6 +104,24 @@ namespace DynDNS_Updater
             AppSettings.WriteLogFile = LogfileCheckBox.Checked;
 
             AppSettings.SaveSettings();
+
+
+            if (currentCulture != newCulture)
+            {
+                AppSettings.Reference.MainFormReference.AddToLogBoxHandler(Language.Log.App_Restart_Needed);
+
+                var confirmResult = MessageBox.Show(Language.Window.ConfirmRestart,
+                         Language.Window.ConfirmationDialog,
+                         MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    System.Threading.Thread.CurrentThread.CurrentUICulture =
+                        System.Globalization.CultureInfo.CreateSpecificCulture(Settings.AppSettings.AppLanguage);
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    Settings.AppSettings.Reference.MainFormReference.Close();
+                }
+            }
+            
         }
 
         #endregion

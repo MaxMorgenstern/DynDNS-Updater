@@ -129,6 +129,11 @@ namespace DynDNS_Updater
             Helper.OpenWebpage(@"http://ddns.edns.de/?help");
         }
 
+        private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.OpenWebpage(@"https://github.com/MaxMorgenstern/DynDNS-Updater/issues");
+        }
+
         // Context Menue //////////////////////////////
         public void ContextMenueEnableAutostart_click(object sender, EventArgs e)
         {

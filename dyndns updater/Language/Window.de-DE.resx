@@ -246,4 +246,7 @@
   <data name="ConfirmRestart" xml:space="preserve">
     <value>Die Anwendung muss neu gestartet werden damit die Änderungen angewandt werden.</value>
   </data>
+  <data name="ReportBug" xml:space="preserve">
+    <value>Fehler melden</value>
+  </data>
 </root>

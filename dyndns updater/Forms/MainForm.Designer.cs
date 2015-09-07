@@ -37,6 +37,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutDynDNSUpdaterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IPTempBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LogBox = new System.Windows.Forms.ListBox();
@@ -50,6 +51,7 @@
             this.UpdateStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.forceUpdateButton = new System.Windows.Forms.Button();
             this.pauseStartUpdateButton = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.MainFormStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -78,19 +80,19 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Settings;
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.Exit;
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -98,6 +100,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.documentationToolStripMenuItem,
+            this.reportABugToolStripMenuItem,
+            this.toolStripSeparator2,
             this.aboutDynDNSUpdaterToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -117,6 +121,13 @@
             this.aboutDynDNSUpdaterToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.About;
             this.aboutDynDNSUpdaterToolStripMenuItem.Click += new System.EventHandler(this.aboutDynDNSUpdaterToolStripMenuItem_Click);
             // 
+            // reportABugToolStripMenuItem
+            // 
+            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.reportABugToolStripMenuItem.Text = global::DynDNS_Updater.Language.Window.ReportBug;
+            this.reportABugToolStripMenuItem.Click += new System.EventHandler(this.reportABugToolStripMenuItem_Click);
+            // 
             // IPTempBox
             // 
             this.IPTempBox.Enabled = false;
@@ -132,7 +143,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = Language.Window.CurrentIP + Language.Static.Colon;
+            this.label1.Text = "Current IP:";
             // 
             // LogBox
             // 
@@ -151,7 +162,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = Language.Window.Username + Language.Static.Colon;
+            this.label2.Text = "Username:";
             // 
             // label3
             // 
@@ -160,7 +171,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = Language.Window.Token + Language.Static.Colon;
+            this.label3.Text = "Token:";
             // 
             // UserName
             // 
@@ -231,6 +242,11 @@
             this.pauseStartUpdateButton.UseVisualStyleBackColor = true;
             this.pauseStartUpdateButton.Click += new System.EventHandler(this.pauseStartUpdateButton_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(196, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,7 +268,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = Language.Window.App_Name;
+            this.Text = "DynDNS Updater";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
@@ -287,6 +303,8 @@
         private System.Windows.Forms.ToolStripStatusLabel UpdateStripStatusLabel;
         private System.Windows.Forms.Button forceUpdateButton;
         private System.Windows.Forms.Button pauseStartUpdateButton;
+        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

@@ -10,6 +10,7 @@ namespace DynDNS_Updater.Logic
     {
         private static string regKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
         private static string regAppName = Language.Window.App_Name;
+        private static string regAppPath = Application.ExecutablePath.ToString();
 
         // The path to the key where Windows looks for startup applications
         private static RegistryKey rkAppUser
@@ -34,7 +35,7 @@ namespace DynDNS_Updater.Logic
         public static void EnableAutostart()
         {
             if (!IsStartupItemForCurrentUser())
-                rkAppUser.SetValue(regAppName, Application.ExecutablePath.ToString());
+                rkAppUser.SetValue(regAppName, regAppPath);
             AppSettings.AutostartEnabled = true;
             AppSettings.SaveSettings();
         }
@@ -49,11 +50,15 @@ namespace DynDNS_Updater.Logic
 
         public static bool IsStartupItemForCurrentUser()
         {
-            // if doesn't exist or not set to run at startup
-            if (rkAppUser.GetValue(regAppName) == null)
-                return false;
-            else
-                return true;
+            object regKey = rkAppUser.GetValue(regAppName);
+            if (regKey != null)
+            {
+                if (regKey.ToString() == regAppPath)
+                    return true;
+            }
+            // remove if invalid path
+            rkAppUser.DeleteValue(regAppName, false);
+            return false;
         }
 
 
@@ -62,7 +67,7 @@ namespace DynDNS_Updater.Logic
         public static void EnableAutostartAll()
         {
             if (!IsStartupItemForAllUser())
-                rkAppAll.SetValue(regAppName, Application.ExecutablePath.ToString());
+                rkAppAll.SetValue(regAppName, regAppPath);
         }
 
         public static void DisableAutostartAll()
@@ -73,11 +78,15 @@ namespace DynDNS_Updater.Logic
 
         public static bool IsStartupItemForAllUser()
         {
-            // if doesn't exist or not set to run at startup
-            if (rkAppAll.GetValue(regAppName) == null)
-                return false;
-            else
-                return true;
+            object regKey = rkAppAll.GetValue(regAppName);
+            if (regKey != null)
+            {
+                if (regKey.ToString() == regAppPath)
+                    return true;
+            }
+            // remove if invalid path
+            rkAppAll.DeleteValue(regAppName, false);
+            return false;
         }
 
 

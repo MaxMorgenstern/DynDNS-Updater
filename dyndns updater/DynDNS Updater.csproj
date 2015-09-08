@@ -84,6 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AccountItem.cs" />
+    <Compile Include="Entities\AccountItemList.cs" />
     <Compile Include="Entities\DDNSProvider.cs" />
     <Compile Include="Entities\DDNSProviderList.cs" />
     <Compile Include="Entities\PauseObject.cs" />

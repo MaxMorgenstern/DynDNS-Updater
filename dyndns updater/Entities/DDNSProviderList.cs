@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DynDNS_Updater.Entities
 {
-    static class DDNSProviderList
+    public static class DDNSProviderList
     {
         private static List<DDNSProvider> _list;
         public static List<DDNSProvider> List 

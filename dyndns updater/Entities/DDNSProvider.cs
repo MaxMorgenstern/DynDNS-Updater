@@ -1,8 +1,10 @@
 ﻿using DynDNS_Updater.Settings;
+using System.Configuration;
 
 namespace DynDNS_Updater.Entities
 {
-    class DDNSProvider
+    [SettingsSerializeAs(SettingsSerializeAs.Xml)]
+    public class DDNSProvider
     {
         public int Id;
         public string Name;

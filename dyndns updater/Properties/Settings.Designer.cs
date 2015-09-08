@@ -148,5 +148,16 @@ namespace DynDNS_Updater.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::DynDNS_Updater.Entities.AccountItemList Accounts {
+            get {
+                return ((global::DynDNS_Updater.Entities.AccountItemList)(this["Accounts"]));
+            }
+            set {
+                this["Accounts"] = value;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 // TODO: Icons by - https://icons8.com
+// TODO: Settings Provider by - https://github.com/crdx/PortableSettingsProvider
 
 namespace DynDNS_Updater
 {
@@ -22,6 +23,10 @@ namespace DynDNS_Updater
 
         public MainForm()
         {
+
+            // Keep settings from older version
+            AppSettings.UpgradeSettings();
+
             InitializeComponent();
             InitializeTrayIcon();
             AppSettings.Reference.MainFormReference = this;
@@ -65,8 +70,6 @@ namespace DynDNS_Updater
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Keep settings from older version
-            AppSettings.UpgradeSettings();
 
             LogBox.DrawItem += LogBox_DrawItem;
             LogBox.Items.Add(new LogBoxItem(Color.Green, Language.Log.App_Init));

@@ -2,37 +2,37 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DynDNS_Updater.Properties" GeneratedClassName="Release">
   <Profiles />
   <Settings>
-    <Setting Name="Username" Type="System.String" Scope="User">
+    <Setting Name="Username" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Token" Type="System.String" Scope="User">
+    <Setting Name="Token" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="IPType" Type="System.String" Scope="User">
+    <Setting Name="IPType" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SystemUpdateInterval" Type="System.Int32" Scope="Application">
+    <Setting Name="SystemUpdateInterval" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">10000</Value>
     </Setting>
-    <Setting Name="SystemUpdateSettings" Type="System.Boolean" Scope="User">
+    <Setting Name="SystemUpdateSettings" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="SystemAutostartEnabled" Type="System.Boolean" Scope="User">
+    <Setting Name="SystemAutostartEnabled" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SystemStartMinimized" Type="System.Boolean" Scope="User">
+    <Setting Name="SystemStartMinimized" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SystemWriteLogFile" Type="System.Boolean" Scope="User">
+    <Setting Name="SystemWriteLogFile" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SystemLockProvider" Type="System.Int32" Scope="Application">
+    <Setting Name="SystemLockProvider" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="Provider" Type="System.Int32" Scope="User">
+    <Setting Name="Provider" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
+    <Setting Name="Language" Provider="DynDNS_Updater.Settings.PortableSettingsProvider" Roaming="true" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

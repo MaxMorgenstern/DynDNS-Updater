@@ -24,8 +24,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>DynDNS Updater</ProductName>
     <PublisherName>Maximilian Porzelt</PublisherName>
-    <ApplicationRevision>38</ApplicationRevision>
-    <ApplicationVersion>0.1.35.38</ApplicationVersion>
+    <ApplicationRevision>42</ApplicationRevision>
+    <ApplicationVersion>0.2.52.42</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>

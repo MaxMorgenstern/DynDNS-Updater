@@ -268,7 +268,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "DynDNS Updater";
+            this.Text = global::DynDNS_Updater.Language.Window.App_Name + " v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);

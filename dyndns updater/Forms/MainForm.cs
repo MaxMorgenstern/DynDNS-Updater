@@ -212,7 +212,7 @@ namespace DynDNS_Updater
                 return;
             
             string tmpIP = string.Empty;
-            if (AppSettings.IPType == Language.Static.TagIPv6)
+            if (AppSettings.IPType == Language.Static.IPv6)
             {
                 tmpIP = DynDNS.GetIPv6().TrimEnd(Environment.NewLine.ToCharArray());
             }
@@ -233,21 +233,22 @@ namespace DynDNS_Updater
                 {
                     if (!AppSettings.CurrentIP.Equals(tmpIP))
                     {
-                        string tmpCurrentIP = AppSettings.CurrentIP;
-                        AppSettings.CurrentIP = tmpIP;
-                        string updateResponse = DynDNS.UpdateIP(AppSettings.Username, AppSettings.Token, AppSettings.CurrentIP);
+                        string updateResponse = DynDNS.UpdateIP(AppSettings.Username, AppSettings.Token, tmpIP);
 
                         Color updateLogColor = Color.Black;
                         bool updateSuccess = false;
                         DynDNS.ValidateResponse(updateResponse, out updateSuccess, out updateLogColor);
 
-                        LogBox.Items.Add(new LogBoxItem(Color.Black, String.Format(Language.Log.DNS_Update_Try, AppSettings.CurrentIP)));
+                        LogBox.Items.Add(new LogBoxItem(Color.Black, String.Format(Language.Log.DNS_Update_Try, tmpIP)));
                         LogBox.Items.Add(new LogBoxItem(updateLogColor, updateResponse));
 
                         if (!updateSuccess)
                         {
                             SystemPauseUpdate();
-                            AppSettings.CurrentIP = tmpCurrentIP.TrimEnd(Environment.NewLine.ToCharArray());
+                        }
+                        else
+                        {
+                            AppSettings.CurrentIP = tmpIP;
                         }
                     }
                 } // if <all update conditions passed>
@@ -257,14 +258,9 @@ namespace DynDNS_Updater
                 }
             } // if !pauseUpdate
 
-            if (AppSettings.CurrentIP == Language.Static.Unknown)
-            {
-                IPTempBox.Text = tmpIP;
-            }
-            else
-            {
-                IPTempBox.Text = AppSettings.CurrentIP;
-            }
+
+            IPTempBox.Text = tmpIP;
+            
 
             if (PauseObject.CheckContinue())
             {
